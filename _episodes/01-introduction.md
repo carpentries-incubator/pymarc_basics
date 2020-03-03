@@ -1,29 +1,36 @@
 ---
 title: Introduction and Setup
-teaching: 0
-exercises: 0
+teaching: 10
+exercises: 15
 objectives:
 - Install and check Python v3.x
 - Install and check pymarc
 - Collect data files used in lesson
 - Basic preflight checks 
 ---
-Episode 1: Getting Started
+
+## Episode 1: Getting Started
 
 
-#Pre-Requirements
+# Pre-Requirements
 
 The first thing we need to do is make sure we can use Python, and we're all using the correct version of Python. 
 
 If you've not installed python yet, please install the latest version (https://www.python.org/downloads/)
 
-If  you don't have an Interactive Deployment Environment (IDE) install Sublime text v3 (https://www.sublimetext.com/3) N.B. If you laptop has corporate controls/permission, try the portable version. 
+If you don't have an Interactive Deployment Environment (IDE), install SublimeText v3 (https://www.sublimetext.com/3) 
+
+N.B. If your device has corporate controls/restrictions/permission, try the portable version - it sometimes works in cases where the full version is blocked.  
+
+You can use any other IDE that you are used to (Atom, Eclipse, even cmd + notepad... etc). 
+
+Its easier to troubleshoot if we all use the same set of tools! Do try and use SublimeText if you can to help reduce the things we might need to support you with. 
 
 # Hello World!
 
 Start a new python file in your IDE of choice. 
 
-We're using Sublime Text, so we just need to save a new file as test.py in SublimeText. 
+We're using SublimeText, so we just need to save a new file as test.py in SublimeText. 
 
 We can get python to tell us what version it is with the following code:
 
@@ -31,6 +38,14 @@ We can get python to tell us what version it is with the following code:
 import sys
 print(sys.executable)
 ```
+
+To 'deploy' the script in Sublime, you can use the following keystrokes:
+
+<kbd>Control</kbd> + <kbd>S</kbd> to save your changes
+
+<kbd>Control</kbd> + <kbd>B</kbd> to "build" the script and run it. 
+
+Its worth remembering these two commands, you'll use them a lot in this lesson! 
 
 We're looking to see where python is installed - theres a version number in the file path. 
 We want to see <code>Python3x</code> to make sure we're all using Python version 3. 
@@ -46,6 +61,8 @@ To install packages, we use a tool called 'Pip Installs Packages' or better know
 If it worked, you should see something like:
 <code>Successfully installed pymarc-3.2.0</code>
 
+Make a folder to hold all the files we'll use in this lesson called <code>pymarc_basics</code> somewhere that you can easily find. 
+
 To test it worked, open your IDE (SublimeText) and make a new python file (e.g. <code>test.py</code>) and type:
 
 ```Python
@@ -56,9 +73,20 @@ print ("Hello World!")
 
 Run the script, and if there is no error messages in the python terminal window and you see the text <code>Hello World!</code>, you've successfully installed pymarc! 
 
-We need to make sure we have a local copy of the MARC file we'll use for the rest of the lesson. # todo [make this easier to grab the binary] https://github.com/jayGattusoNLNZ/pymarc_basics/blob/gh-pages/files/NLNZ_example_marc.marc and download the <code>NLNZ_example_marc.marc</code> file.
+We need to make sure we have a local copy of the MARC file we'll use for the rest of the lesson. 
+# todo [make this easier to grab the binary] 
+https://github.com/jayGattusoNLNZ/pymarc_basics/blob/gh-pages/files/NLNZ_example_marc.marc and download the <code>NLNZ_example_marc.marc</code> file.
 
 Save it in the same folder as your scripts. 
+
+You should have a folder structure that looks like this:
+
+```
+pymarc_basics
+	episode_1.py
+	test.py
+	NLNZ_example_marc.marc
+```
 
 # Hello PyMARC! 
 
@@ -67,15 +95,16 @@ Finally, lets put all this together, and see if we can read the marc file.
 Start a new python file, <code>episode_1.py</code> and type the following code:
 
 ```Python
-import pymarc
+from pymarc import MARCReader
 
 my_marc_file = "NLNZ_example_marc.marc"
 
-reader = pymarc.MARCReader(open(my_marc_file, 'rb'), force_utf8="True") 
-
-for record in reader:
-    print (record['245'])
+with open(my_marc_file, 'rb') as data:
+	reader = MARCReader(data)
+	for record in reader:
+		print (record['245'])
 ```
+
 
 We'll cover off this script in the next episode. For now you want to see a list of titles that are included in our test set of MARC records:
 ```

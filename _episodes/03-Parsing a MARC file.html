@@ -1,5 +1,5 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="teaching" content="0">
-<meta name="exercises" content="0">
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="teaching" content="30">
+<meta name="exercises" content="30">
 <meta name="objectives" content=""><style>body {
   max-width: 980px;
   border: 1px solid #ddd;
@@ -1063,90 +1063,115 @@ body .markdown-body
 <li>finding specific data with pymarc</li>
 </ul>
 <hr />
-<p>Episode 3: Parsing with pymarc</p>
+<h2 id="episode-3-parsing-with-pymarc">Episode 3: Parsing with pymarc<a class="headerlink" href="#episode-3-parsing-with-pymarc" title="Permanent link"></a></h2>
+<h1 id="finding-specific-fields-with-pymarc">Finding specific fields with PyMARC<a class="headerlink" href="#finding-specific-fields-with-pymarc" title="Permanent link"></a></h1>
 <p>Start a new file in your IDE <code>episode_3.py</code></p>
 <p>Set up the basic record reader like we did in episode 2:</p>
-<div class="codehilite"><pre>    <span class="kn">import</span> <span class="nn">pymarc</span>
+<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">pymarc</span> <span class="kn">import</span> <span class="n">MARCReader</span>
 
-    <span class="n">my_marc_file</span> <span class="o">=</span> <span class="s">&quot;NLNZ_example_marc.mrc&quot;</span>
+<span class="n">my_marc_file</span> <span class="o">=</span> <span class="s">&quot;NLNZ_example_marc.marc&quot;</span>
 
-    <span class="n">reader</span> <span class="o">=</span> <span class="n">pymarc</span><span class="o">.</span><span class="n">MARCReader</span><span class="p">(</span><span class="nb">file</span><span class="p">(</span><span class="n">my_marc_file</span><span class="p">))</span> 
-
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">my_marc_file</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">MARCReader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
         <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">)</span>
 </pre></div>
 
 <p>We can used the data object created by pymarc to only process fields we&rsquo;re interested in. We can do that by telling python the field name e.g. <code>print (record[&lsquo;245&rsquo;])</code> In this piece of code we&rsquo;re asking pymarc to print any field in our record object that has the label/name <code>245</code>  </p>
-<p>If we add this little piece of code to our basic file parser we can see all the title statements for our test set:</p>
-<div class="codehilite"><pre>    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-        <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">])</span>
+<p>If we add this piece of code to our basic file parser we can see all the title statements for our test set:</p>
+<div class="codehilite"><pre><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">])</span>
 </pre></div>
 
 <hr />
-<div class="codehilite"><pre>    =245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
-    =245  10$aDifficult country :$ban informal history of Murchison /$cMargaret C. Brown.
-    =245  00$aThese fortunate isles :$bsome Russian perceptions of New Zealand in the nineteenth and early twentieth centuries /$cselected, translated and annotated by John Goodliffe.
-    =245  10$aAs high as the hills :$bthe centennial history of Picton /$cby Henry D. Kelly.
-    =245  10$aRevised establishment plan.
-    =245  02$aA Statistical profile of young women /$ccompiled for the YWCA of Aotearoa-New Zealand by Nic Mason, Dianna Morris and Angie Cairncross ; with the assistance of Shell New Zealand.
-    =245  10$aChilton Saint James :$ba celebration of 75 years, 1918-1993 /$cJocelyn Kerslake.
-    =245  10$aTatum, a celebration :$b50 years of Tatum Park /$cby Tom Howarth.
-    =245  04$aThe Discussion document of the Working Party on Fire Service Levy /$b... prepared by the Working Party on the Fire Service Levy.
-    =245  00$a1991 New Zealand census of population and dwellings.$pNew Zealanders at home.
+<div class="codehilite"><pre>=245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
+=245  10$aDifficult country :$ban informal history of Murchison /$cMargaret C. Brown.
+=245  00$aThese fortunate isles :$bsome Russian perceptions of New Zealand in the nineteenth and early twentieth centuries /$cselected, translated and annotated by John Goodliffe.
+=245  10$aAs high as the hills :$bthe centennial history of Picton /$cby Henry D. Kelly.
+=245  10$aRevised establishment plan.
+=245  02$aA Statistical profile of young women /$ccompiled for the YWCA of Aotearoa-New Zealand by Nic Mason, Dianna Morris and Angie Cairncross ; with the assistance of Shell New Zealand.
+=245  10$aChilton Saint James :$ba celebration of 75 years, 1918-1993 /$cJocelyn Kerslake.
+=245  10$aTatum, a celebration :$b50 years of Tatum Park /$cby Tom Howarth.
+=245  04$aThe Discussion document of the Working Party on Fire Service Levy /$b... prepared by the Working Party on the Fire Service Levy.
+=245  00$a1991 New Zealand census of population and dwellings.$pNew Zealanders at home.
 </pre></div>
 
 <p>What is the data type does the record object look like? (<code>print (type(record)) won&rsquo;t help much, can you think why?</code>) </p>
-<p>We can use the same index method to get to the subfields:</p>
-<div class="codehilite"><pre>    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-        <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">][</span><span class="s">&#39;a&#39;</span><span class="p">])</span>
+<p>Behind the scenes when this script is run, python looks at the date object that pymarc created, and looks for the bit that has the label, or &lsquo;key&rsquo; of &ldquo;245&rdquo;. </p>
+<p>See what happens if you give it a key that isn&rsquo;t included in the data object:</p>
+<div class="codehilite"><pre><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;this_key_doesnt_exist&#39;</span><span class="p">])</span>
+    <span class="n">quit</span><span class="p">()</span>
 </pre></div>
 
 <hr />
-<p><div class="codehilite"><pre>    Larger than life :
-    Difficult country :
-    These fortunate isles :
-    As high as the hills :
-    Revised establishment plan.
-    A Statistical profile of young women /
-    Chilton Saint James :
-    Tatum, a celebration :
-    The Discussion document of the Working Party on Fire Service Levy /
-    1991 New Zealand census of population and dwellings.
+<div class="codehilite"><pre>None
 </pre></div>
-What do you notice about these pieces of data? </p>
+
+<p>Notice it doesn&rsquo;t give you an error or otherwise let you know it did find that key in the data object. Its useful to know this happens if we use an key that doesn&rsquo;t exist. If you see the return <code>None</code> in your scripts where you are expecting an actual value, double check the key you&rsquo;ve used. Common errors would be typos (e.g. <code>record[&lsquo;254&rsquo;]</code> instead of <code>record[&lsquo;245&rsquo;]</code>) or using a number instead of a string (e.g. <code>record[245]</code> instead of <code>record[&lsquo;245&rsquo;]</code>).</p>
+<p>In this case, returns <code>None</code>, which itself is an important concept in Python. Its worth pausing for a moment and making sure we understand what <code>None</code> means in the Python context. </p>
+<blockquote>
+<p>The None keyword is used to define a null value, or no value at all.</p>
+<p>None is not the same as 0, False, or an empty string. </p>
+<p>None is a datatype of its own (NoneType) and only None can be None.&rdquo;</p>
+</blockquote>
+<p><a href="https://www.w3schools.com/python/ref_keyword_none.asp">https://www.w3schools.com/python/ref_keyword_none.asp</a> </p>
+<h1 id="accessing-subfields">Accessing Subfields<a class="headerlink" href="#accessing-subfields" title="Permanent link"></a></h1>
+<p>We can use the same &lsquo;key&rsquo; method to get to any subfields we might have:</p>
+<div class="codehilite"><pre><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Subfield &#39;a&#39;:&quot;</span><span class="p">,</span> <span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">][</span><span class="s">&#39;a&#39;</span><span class="p">])</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Subfield &#39;b&#39;:&quot;</span><span class="p">,</span> <span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">][</span><span class="s">&#39;b&#39;</span><span class="p">])</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Subfield &#39;c&#39;:&quot;</span><span class="p">,</span> <span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">][</span><span class="s">&#39;c&#39;</span><span class="p">])</span>
+    <span class="n">quit</span><span class="p">()</span>
+</pre></div>
+
+<hr />
+<p><div class="codehilite"><pre>Subfield &#39;a&#39;: Larger than life :
+Subfield &#39;b&#39;: the story of Eric Baume /
+Subfield &#39;c&#39;: by Arthur Manning.
+</pre></div>
+What do you notice about these pieces of data? Whatg might we need to consider if we want to use data that potentially spans multiple subfields? </p>
 <p>There are a few other ways we can get to the same data that are worth exploring. </p>
-<p>The data object that pymarc creates has a method called &ldquo;<code>value()</code>&ldquo;. We can use this to process the data field and return a text string without any subfield markers. </p>
-<p>This is also a good opportunity to axplore another useful method, &ldquo;<code>type()</code>&ldquo;. Lets have a look a one record:</p>
-<div class="codehilite"><pre>    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-        <span class="k">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="p">))</span>
-        <span class="k">print</span> <span class="p">()</span>
-        <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
-        <span class="k">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">()))</span>
-        <span class="k">print</span> <span class="p">()</span>
-        <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">])</span>
-        <span class="k">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">])</span>
-        <span class="k">print</span> <span class="p">()</span>
-        <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">][</span><span class="s">&#39;a&#39;</span><span class="p">])</span>
-        <span class="k">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">][</span><span class="s">&#39;a&#39;</span><span class="p">]))</span>
-        <span class="n">quit</span><span class="p">()</span>
+<p>The data object that pymarc creates has a method called &ldquo;<code>value()</code>&ldquo;. We can use this to return the data field as text string without any subfield markers or indicators. </p>
+<p>This is also a good opportunity to explore another useful method, &ldquo;<code>type()</code>&ldquo;. </p>
+<p>PyMARC gives us some convenient keywords to help us access key bits of data. One of those is the keyword <code>.title()</code>. </p>
+<p>Lets have a look a one record and what these various methods produce:</p>
+<div class="codehilite"><pre><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+    <span class="k">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="p">))</span>
+    <span class="k">print</span> <span class="p">()</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">])</span>
+    <span class="k">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">]))</span>
+    <span class="k">print</span> <span class="p">()</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
+    <span class="k">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">()))</span>
+    <span class="k">print</span> <span class="p">()</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">][</span><span class="s">&#39;a&#39;</span><span class="p">])</span>
+    <span class="k">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">][</span><span class="s">&#39;a&#39;</span><span class="p">]))</span>
+    <span class="k">print</span> <span class="p">()</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+    <span class="k">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">title</span><span class="p">()))</span>
+    <span class="n">quit</span><span class="p">()</span>
 </pre></div>
 
 <hr />
-<div class="codehilite"><pre>    &lt;class &#39;pymarc.record.Record&#39;&gt;
+<div class="codehilite"><pre>&lt;class &#39;pymarc.record.Record&#39;&gt;
 
-    Larger than life : the story of Eric Baume / by Arthur Manning.
-    &lt;class &#39;str&#39;&gt;
+=245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
+&lt;class &#39;pymarc.field.Field&#39;&gt;
 
-    =245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
-    &lt;class &#39;pymarc.field.Field&#39;&gt;
+Larger than life : the story of Eric Baume / by Arthur Manning.
+&lt;class &#39;str&#39;&gt;
 
-    Larger than life :
-    &lt;class &#39;str&#39;&gt;
+Larger than life :
+&lt;class &#39;str&#39;&gt;
+
+Larger than life : the story of Eric Baume /
+&lt;class &#39;str&#39;&gt;
 </pre></div>
 
-<p>We can use a simliar approach tp find a particular record. Lets say we&rsquo;re looking for the record with the 001 identifer of <code>99628153502836</code>. We can loop through the records in our <code>pymarc.reader</code> object and look for a match:</p>
+<p>We can use a similar approach to find a particular record. Lets say we&rsquo;re looking for the record with the 001 identifer of <code>99628153502836</code>. We can loop through the records in our <code>pymarc.reader</code> object and look for a match:</p>
 <div class="codehilite"><pre>    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s">&#39;001&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="mi">99628153502836</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s">&#39;001&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="mi">99628153502836</span><span class="p">):</span>
             <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Success! found record with id 99628153502836&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -1170,14 +1195,44 @@ What do you notice about these pieces of data? </p>
     =245  00$a1991 New Zealand census of population and dwellings.$pNew Zealanders at home.
 </pre></div>
 
-<p>What about if we want any record that contains the string &ldquo;New Zealand&rdquo;? How might we adapt the code? </p>
-<div class="codehilite"><pre>    <span class="k">if</span> <span class="s">&quot;New Zealand&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">record</span><span class="p">):</span>
-        <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">)</span> 
-        <span class="k">print</span><span class="p">()</span>
+<p>Lets have a look at what happens if we use the <code>.title()</code> method as our string that we&rsquo;re searching:</p>
+<div class="codehilite"><pre><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s">&quot;New Zealand&quot;</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">title</span><span class="p">():</span>
+        <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">])</span>
+        <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
+        <span class="k">print</span> <span class="p">()</span>
 </pre></div>
 
-<p>This could result in an overwhleming amount of data&hellip; give it a go and think about how you might frame that question in a way that helps to refine the data into a useful form. </p>
-<p>Lets refine the question, and ask to see any MARC field that contains our search string. We can do this by adding another loop. We also might want to think about how we assocate each match with a particular record. One way of doing this would be to print the record ID as well as the matching field:</p>
+<hr />
+<div class="codehilite"><pre>=245  00$aThese fortunate isles :$bsome Russian perceptions of New Zealand in the nineteenth and early twentieth centuries /$cselected, translated and annotated by John Goodliffe.
+These fortunate isles : some Russian perceptions of New Zealand in the nineteenth and early twentieth centuries /
+
+=245  00$a1991 New Zealand census of population and dwellings.$pNew Zealanders at home.
+1991 New Zealand census of population and dwellings.
+````
+Notice this difference between these two scripts. This is a really good example of a paradigm we find in coding, explicit vs implicit. 
+
+&gt;In programming, implicit is often used to refer to something that’s done for you by other code behind the scenes. 
+&gt;Explicit is the manual approach to accomplishing the change you wish to have by writing out the instructions to be done explicitly.
+
+https://blog.codeship.com/what-is-the-difference-between-implicit-vs-explicit-programming/
+
+In this case, the programmers behind the pymarc library have made some choices about which version of a title they think is the most straightforward. This is based on what the MARC standard says about a title, and how to interpret the field as a human being. 
+We don&#39;t necessarily know what those choices where, we simply trust that they made sensible one! This is an example of implicit coding. If we built our title parser, that read the field, and its associated subfields, and used some logic to turn that data into a single string like &lt;code&gt;record.title()&lt;/code&gt; does, we would be explicitly coding this solution. 
+
+____ 
+
+What about if we want any record that contains the string &quot;New Zealand&quot;? How might we adapt the code? 
+
+```Python
+    if &quot;New Zealand&quot; in str(record):
+        print (record) 
+        print()
+</pre></div>
+
+<p>This could result in an overwhelming amount of data if we&rsquo;re not careful. Lets have a think about how we might frame that question in a way that helps to refine the data into a useful form. </p>
+<p>What happens if we  ask to see any MARC field that contains our search string. We can do this by adding another loop. 
+We also might want to think about how we associate each match with a particular record. One way of doing this would be to print the record ID as well as the matching field:</p>
 <div class="codehilite"><pre>    <span class="k">if</span> <span class="s">&quot;New Zealand&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">record</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">record</span><span class="p">:</span>
             <span class="k">if</span> <span class="s">&quot;New Zealand&quot;</span> <span class="ow">in</span> <span class="n">field</span><span class="o">.</span><span class="n">value</span><span class="p">():</span>
@@ -1250,7 +1305,7 @@ What do you notice about these pieces of data? </p>
 ...
 </pre></div>
 For brevity we&rsquo;ve only shown the first few fields. </p>
-<p>By itself this isn&rsquo;t hugely useful. How do we know which field name each subfield comes from? </p>
+<h1 id="magic-pymarc-methods">Magic PyMARC methods&hellip;<a class="headerlink" href="#magic-pymarc-methods" title="Permanent link"></a></h1>
 <p>Pymarc helps us out by providing a few useful methods that allow us to get fields and subfields much more elegantly. </p>
 <p>Firstly, <code>get_fields()</code>:</p>
 <div class="codehilite"><pre><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
@@ -1260,7 +1315,7 @@ For brevity we&rsquo;ve only shown the first few fields. </p>
 </pre></div>
 
 <p>Before you consider the output of this code, consider the structure of the code itself. </p>
-<p>Can you see any coding conventions being used?  what are they? Why are they being used? </p>
+<p>Can you see any coding conventions being used?  What are they? Why are they being used? </p>
 <hr />
 <div class="codehilite"><pre>=500  \\$aEric Baume was a New Zealander.
 =500  \\$aIncludes index.
@@ -1286,7 +1341,7 @@ For brevity we&rsquo;ve only shown the first few fields. </p>
 =500  \\$a&quot;Catalogue number 02.226.0091&quot;--T.p. verso.
 </pre></div>
 
-<p>We&rsquo;re not limited to one field type:</p>
+<p>We&rsquo;re not limited to one field in this method:</p>
 <div class="codehilite"><pre><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
     <span class="n">my_500s</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get_fields</span><span class="p">(</span><span class="s">&#39;500&#39;</span><span class="p">,</span> <span class="s">&#39;700&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">my_500</span> <span class="ow">in</span> <span class="n">my_500s</span><span class="p">:</span>
@@ -1303,7 +1358,7 @@ For brevity we&rsquo;ve only shown the first few fields. </p>
 ...
 </pre></div>
 
-<p>Lets unpick a field that contains subfields:
+<p>Lets unpick a field that contains subfields:</p>
 <div class="codehilite"><pre><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
     <span class="n">my_245s</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get_fields</span><span class="p">(</span><span class="s">&#39;245&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">my_245</span> <span class="ow">in</span> <span class="n">my_245s</span><span class="p">:</span>
@@ -1311,7 +1366,8 @@ For brevity we&rsquo;ve only shown the first few fields. </p>
         <span class="k">for</span> <span class="n">my_245_subfield</span> <span class="ow">in</span> <span class="n">my_245_subfields</span><span class="p">:</span>
             <span class="k">print</span> <span class="p">(</span><span class="n">my_245_subfield</span><span class="p">)</span>
     <span class="n">quit</span><span class="p">()</span>
-</pre></div></p>
+</pre></div>
+
 <hr />
 <p><div class="codehilite"><pre>Larger than life :
 the story of Eric Baume /
@@ -1321,8 +1377,8 @@ We need to specify the field codes, or subfield codes for both of these methods.
 <p>There one more trick to pymarc that helps us to parse a MARC record. In a previous episode we looked at the sturcture of MARC files, and noted where we can see the two indicators for any field. We can get to this data directly via pymarc: </p>
 <div class="codehilite"><pre><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
     <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">])</span>
-    <span class="k">print</span> <span class="p">(</span><span class="n">f</span><span class="s">&quot;Field 245 indicator 1: {record[&#39;245&#39;].indicator1}&quot;</span><span class="p">)</span>
-    <span class="k">print</span> <span class="p">(</span><span class="n">f</span><span class="s">&quot;Field 245 indicator 2: {record[&#39;245&#39;].indicator2}&quot;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Field 245 indicator 1: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">indicator1</span><span class="p">))</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Field 245 indicator 2: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">indicator2</span><span class="p">))</span>
     <span class="n">quit</span><span class="p">()</span>
 </pre></div>
 
@@ -1346,10 +1402,100 @@ Field 245 indicator 1: 1
 Field 245 indicator 2: 0
 </pre></div>
 
-<p>What is the data type we&rsquo;re using for our logical test? 
-What happens if you is a different data type? </p>
+<h1 id="list-of-pymarc-methods">List of PyMARC methods<a class="headerlink" href="#list-of-pymarc-methods" title="Permanent link"></a></h1>
+<p>The pymarc record object has more useful data &ldquo;shortcuts&rdquo; that we won&rsquo;t go into the specifics of, but are useful to know</p>
+<div class="codehilite"><pre><span class="n">record</span><span class="o">.</span><span class="n">author</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">isbn</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">issn</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">issn_title</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">leader</span>
+<span class="n">record</span><span class="o">.</span><span class="n">location</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">pos</span>
+<span class="n">record</span><span class="o">.</span><span class="n">publisher</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">pubyear</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">series</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">sudoc</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">uniformtitle</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">notes</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">subjects</span><span class="p">()</span>
+<span class="n">record</span><span class="o">.</span><span class="n">physicaldescription</span><span class="p">()</span>
+</pre></div>
+
+<p>If you have time see what happens when you use these &ldquo;shortcuts&rdquo;. </p>
+<h1 id="building-a-basic-parser">Building a basic parser!<a class="headerlink" href="#building-a-basic-parser" title="Permanent link"></a></h1>
+<p>We could pull some of the approaches we looked at into a single script:</p>
+<div class="codehilite"><pre>    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="k">print</span> <span class="p">(</span><span class="s">&quot;MMS ID:&quot;</span><span class="p">,</span> <span class="n">record</span><span class="p">[</span><span class="s">&#39;001&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">my_field</span> <span class="ow">in</span> <span class="n">record</span><span class="p">:</span>
+            <span class="c1">#### Control fields (in the range 00x) don&#39;t have indicators. </span>
+            <span class="c1">#### We use this try/except catcher to allow us to elegantly handle both cases without encountering a breaking error, or a coding failure</span>
+            <span class="k">try</span><span class="p">:</span>  
+                <span class="n">ind_1</span> <span class="o">=</span> <span class="n">my_field</span><span class="o">.</span><span class="n">indicator1</span>
+                <span class="n">ind_2</span> <span class="o">=</span> <span class="n">my_field</span><span class="o">.</span><span class="n">indicator2</span>
+
+                <span class="c1">#### Setting an empty indicator to a more conventional and readable &quot;/&quot;</span>
+                <span class="k">if</span> <span class="n">ind_1</span> <span class="o">==</span> <span class="s">&quot; &quot;</span><span class="p">:</span>
+                    <span class="n">ind_1</span> <span class="o">=</span> <span class="s">&quot;/&quot;</span>
+                <span class="k">if</span> <span class="n">ind_2</span> <span class="o">==</span> <span class="s">&quot; &quot;</span><span class="p">:</span>
+                    <span class="n">ind_2</span> <span class="o">=</span> <span class="s">&quot;/&quot;</span>
+
+                <span class="k">print</span> <span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Tag #:&quot;</span><span class="p">,</span> <span class="n">my_field</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span> <span class="s">&quot;Indicator 1:&quot;</span><span class="p">,</span> <span class="n">ind_1</span> <span class="p">,</span> <span class="s">&quot;Indicator 2:&quot;</span><span class="p">,</span> <span class="n">ind_2</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="k">print</span> <span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Tag #:&quot;</span><span class="p">,</span> <span class="n">my_field</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">my_subfield_key</span><span class="p">,</span> <span class="n">my_subfield_value</span> <span class="ow">in</span> <span class="n">my_field</span><span class="p">:</span>
+                <span class="k">print</span> <span class="p">(</span><span class="s">&quot;</span><span class="se">\t\t</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">my_subfield_key</span><span class="p">,</span> <span class="n">my_subfield_value</span><span class="p">)</span>
+            <span class="k">print</span> <span class="p">()</span>
+        <span class="k">print</span> <span class="p">()</span>
+        <span class="n">quit</span><span class="p">()</span>
+</pre></div>
+
+<hr />
+<p><div class="codehilite"><pre>MMS ID: 9962783502836
+    Tag #: 001
+
+    Tag #: 003
+
+    Tag #: 005
+
+    Tag #: 008
+
+    Tag #: 035 Indicator 1: / Indicator 2: /
+         z 4260
+
+    Tag #: 035 Indicator 1: / Indicator 2: /
+         a (nzNZBN)687856
+
+    Tag #: 035 Indicator 1: / Indicator 2: /
+         9    67095940
+
+    Tag #: 035 Indicator 1: / Indicator 2: /
+         a (Nz)3760235
+
+    Tag #: 035 Indicator 1: / Indicator 2: /
+         a (NLNZils)6278
+
+    Tag #: 035 Indicator 1: / Indicator 2: /
+         a (NLNZils)6278-ilsdb
+
+    Tag #: 035 Indicator 1: / Indicator 2: /
+         a (OCoLC)957343
+
+    Tag #: 040 Indicator 1: / Indicator 2: /
+         d WN*
+
+    Tag #: 042 Indicator 1: / Indicator 2: /
+         a nznb
+
+    Tag #: 050 Indicator 1: 0 Indicator 2: /
+         a PN5596.B3
+         b M3
+    ...
+</pre></div>
+Have a play around with a building a parser that displays data that you&rsquo;re interested in, using the above as a template. </p>
 <p><strong>Experiments!</strong></p>
-<p>See if you can find any records with the OCLC identifer 39818086
+<p>See if you can find any records with the OCLC identifier &ldquo;39818086&rdquo;
 Can you count how many records have more than one 500 fields?</p>
 <h1 id="todo-what-is-the-main-language-indicator">todo - what is the main language indicator!?<a class="headerlink" href="#todo-what-is-the-main-language-indicator" title="Permanent link"></a></h1>
 <p>Can you find out how many records describe an item thats written in English? (hint: We can look in the <code>record.leader</code> in position )</p></article></body></html>

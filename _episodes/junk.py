@@ -1,10 +1,16 @@
-
-import pymarc
-
-my_marc_file = r"E:\GitHub\pymarc_basics\files\NLNZ_example_marc.mrc"
-
-my_marc =  pymarc.MARCReader(open(my_marc_file, 'rb'), force_utf8=True)
-for i, record in enumerate(my_marc):
-    with open(f"{i}.json", "w", encoding='utf8') as data:
-        data.write(record.as_json(indent=2))
-
+print (record.author())
+print (record.isbn())
+print (record.issn())
+print (record.issn_title())
+print (record.leader) 
+print (record.location())
+print ([x.value() for x in record.notes()])
+print ([x.value() for x in record.physicaldescription()])
+print (record.pos)
+print (record.publisher())
+print (record.pubyear())
+print (record.series())
+print ([x.value() for x in record.subjects()])
+print (record.sudoc())
+print (record.title())
+print (record.uniformtitle())

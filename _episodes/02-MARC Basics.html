@@ -1,5 +1,5 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="teaching" content="0">
-<meta name="exercises" content="0">
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="teaching" content="10">
+<meta name="exercises" content="15">
 <meta name="objectives" content=""><style>body {
   max-width: 980px;
   border: 1px solid #ddd;
@@ -1057,13 +1057,13 @@ body .markdown-body
 .codehilite .vi{color:teal}
 .codehilite .il{color:#009999}
 .codehilite .gc{color:#999;background-color:#EAF2F5}
-</style><title>"MARC basics"</title></head><body><article class="markdown-body"><ul>
+</style><title>MARC basics</title></head><body><article class="markdown-body"><ul>
 <li>What is MARC?</li>
-<li>Where are helpful resourse for MARC?</li>
+<li>Where are helpful resource for MARC?</li>
 <li>Understanding the basic structure of a MARC file in pymarc</li>
 </ul>
 <hr />
-<p>Episode 2: MARC basics</p>
+<h1 id="episode-2-marc-basics">Episode 2: MARC basics<a class="headerlink" href="#episode-2-marc-basics" title="Permanent link"></a></h1>
 <p>&ldquo;MARC is the acronym for <strong>MA</strong>chine-<strong>R</strong>eadable <strong>C</strong>ataloging. It defines a data format that emerged from a Library of Congress-led initiative that began nearly forty years ago. It provides the mechanism by which computers exchange, use, and interpret bibliographic information, and its data elements make up the foundation of most library catalogs used today. MARC became USMARC in the 1980s and MARC 21 in the late 1990s.&rdquo;
 <a href="https://www.loc.gov/marc/">https://www.loc.gov/marc/</a></p>
 <p>&ldquo;MARC Terms and Their Definitions&rdquo;
@@ -1071,59 +1071,61 @@ body .markdown-body
 <p>&ldquo;This online publication provides access to both the full and concise versions of the MARC 21 Format for Bibliographic Data.&rdquo; <a href="http://www.loc.gov/marc/bibliographic/">http://www.loc.gov/marc/bibliographic/</a></p>
 <p>Lets take a look at a marc record, and see what it contains. </p>
 <p>Start a new python file  <code>episode_2.py</code> and type the following script:</p>
-<div class="codehilite"><pre>    <span class="kn">import</span> <span class="nn">pymarc</span>
+<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">pymarc</span>
 
-    <span class="n">my_marc_file</span> <span class="o">=</span> <span class="s">&quot;NLNZ_example_marc.mrc&quot;</span>
+<span class="n">my_marc_file</span> <span class="o">=</span> <span class="s">&quot;NLNZ_example_marc.marc&quot;</span>
 
-    <span class="n">reader</span> <span class="o">=</span> <span class="n">pymarc</span><span class="o">.</span><span class="n">MARCReader</span><span class="p">(</span><span class="nb">file</span><span class="p">(</span><span class="n">my_marc_file</span><span class="p">))</span> 
+<span class="n">reader</span> <span class="o">=</span> <span class="n">pymarc</span><span class="o">.</span><span class="n">MARCReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">my_marc_file</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">),</span> <span class="n">force_utf8</span><span class="o">=</span><span class="s">&quot;True&quot;</span><span class="p">)</span> 
 
-    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-        <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">)</span>
-        <span class="n">quit</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+    <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">)</span>
+    <span class="n">quit</span><span class="p">()</span>
 </pre></div>
 
-<p>You should see a marc file:
-<div class="codehilite"><pre>    =LDR  00912cam a2200301 a 4500
-    =001  9962783502836
-    =003  Nz
-    =005  20161223124839.0
-    =008  731001s1967\\\\at\ac\\\\\\\\\00010beng\d
-    =035  \\$z4260
-    =035  \\$a(nzNZBN)687856
-    =035  \\$9   67095940
-    =035  \\$a(Nz)3760235
-    =035  \\$a(NLNZils)6278
-    =035  \\$a(NLNZils)6278-ilsdb
-    =035  \\$a(OCoLC)957343
-    =040  \\$dWN*
-    =042  \\$anznb
-    =050  0\$aPN5596.B3$bM3
-    =082  0\$a823.2$220
-    =100  1\$aManning, Arthur,$d1918-
-    =245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
-    =260  \\$aSydney [N.S.W.], :$aWellington [N.Z.] :$bReed,$c1967.
-    =300  \\$a184 p., [8] p. of plates :$bill., ports. ;$c23 cm.
-    =500  \\$aEric Baume was a New Zealander.
-    =600  10$aBaume, Eric,$d1900-1967.
-    =650  \0$aJournalists$zAustralia$xBiography.
-    =650  \0$aAuthors, New Zealand$y20th century$xBiography. 
+<p>You should see a marc record, line-by-line, in the terminal window:
+<div class="codehilite"><pre>=LDR  00912cam a2200301 a 4500
+=001  9962783502836
+=003  Nz
+=005  20161223124839.0
+=008  731001s1967\\\\at\ac\\\\\\\\\00010beng\d
+=035  \\$z4260
+=035  \\$a(nzNZBN)687856
+=035  \\$9   67095940
+=035  \\$a(Nz)3760235
+=035  \\$a(NLNZils)6278
+=035  \\$a(NLNZils)6278-ilsdb
+=035  \\$a(OCoLC)957343
+=040  \\$dWN*
+=042  \\$anznb
+=050  0\$aPN5596.B3$bM3
+=082  0\$a823.2$220
+=100  1\$aManning, Arthur,$d1918-
+=245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
+=260  \\$aSydney [N.S.W.], :$aWellington [N.Z.] :$bReed,$c1967.
+=300  \\$a184 p., [8] p. of plates :$bill., ports. ;$c23 cm.
+=500  \\$aEric Baume was a New Zealander.
+=600  10$aBaume, Eric,$d1900-1967.
+=650  \0$aJournalists$zAustralia$xBiography.
+=650  \0$aAuthors, New Zealand$y20th century$xBiography. 
 </pre></div></p>
 <p>Its useful to understand the structure of the data object we can see, and how it relates to the MARC format. </p>
-<p>Notice the first piece of data starts with an <kbd>=</kbd>. The first one we see is <code>=LDR</code>. The <code>=</code> tells us its a field label, or tag, and the following 3 characters are the tag value. In this case <code>LDR</code> tells us we&rsquo;re reading the leader field. All other MARC fields are zeropadded 3 digit numbers. The following data on that row is the field value. In MARC, the first 9 fields are called control fields, and are structured a little differently to all other fields. Its worth refering to the MARC guidelines to make sure we can correctly understand what the data is telling us&hellip;  <a href="http://www.loc.gov/marc/bibliographic/bd00x.html">http://www.loc.gov/marc/bibliographic/bd00x.html</a></p>
+<p>Notice the first piece of data starts with an <code>=</code>. The first one we see is <code>=LDR</code>. The <code>=</code> tells us its a field label, or tag, and the following 3 characters are the tag value. In this case <code>LDR</code> tells us we&rsquo;re reading the leader field. All other MARC fields are zero-padded 3 digit numbers. The following data on that row is the field value. In MARC, the first 9 fields are called control fields, and are structured a little differently to all other fields. Its worth referring to the MARC guidelines to make sure we can correctly understand what the data is telling us&hellip;  <a href="http://www.loc.gov/marc/bibliographic/bd00x.html">http://www.loc.gov/marc/bibliographic/bd00x.html</a></p>
 <p>We&rsquo;ll get into the details of some of the control fields later on. For now lets focus on one of the &ldquo;standard&rdquo; fields and take a look at how its made up. Lets look at the 245 field, the &ldquo;title statement&rdquo; <a href="http://www.loc.gov/marc/bibliographic/bd245.html">http://www.loc.gov/marc/bibliographic/bd245.html</a></p>
-<div class="codehilite"><pre>    =245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
+<div class="codehilite"><pre>=245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
 </pre></div>
 
-<p>We&rsquo;ve established the <code>=245</code> is telling us the field name. We can see a couple of spaces, and then the digits <code>1</code> and <code>0</code>. These are the two &lsquo;indicators&rsquo; for the field. Sometimes they&rsquo;re empty or blank, some times they&rsquo;re unused (and encountered as the <code>\</code>) character, and sometimes they&rsquo;re set to a value like we can see here. We&rsquo;ll look at how parse this infomation later. </p>
+<p>We&rsquo;ve established the <code>=245</code> is telling us the field name. We can see a couple of spaces, and then the digits <code>1</code> and <code>0</code>. These are the two &lsquo;indicators&rsquo; for the field. Sometimes they&rsquo;re empty or blank, some times they&rsquo;re unused (and encountered as the <code>\</code>) character, and sometimes they&rsquo;re set to a value like we can see here. We&rsquo;ll look at how to parse this information later. </p>
 <p>Following the two indicators, we can see some data thats separated by the <code>$</code> character:</p>
-<div class="codehilite"><pre>    $aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
+<div class="codehilite"><pre>$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
 </pre></div>
 
 <p>The <code>$</code> is always followed by another character, the subfield label, and then the value of the subfield. In this instance we can see 3 subfields; a, b, and c:</p>
-<div class="codehilite"><pre>    a| Larger than life :
-    b| the story of Eric Baume /
-    c| by Arthur Manning.
+<div class="codehilite"><pre>a| Larger than life :
+b| the story of Eric Baume /
+c| by Arthur Manning.
 </pre></div>
 
-<p>Spend a moment looking at the MARC specs for this field, and the data we have in this record</p>
+<p>Spend a moment looking at the MARC specs for this field, and the data we have in this record. </p>
+<p>What do the indicators tell us about this field? 
+What do the three subfields tell us about this field? </p>
 <p><a href="http://www.loc.gov/marc/bibliographic/bd245.html">http://www.loc.gov/marc/bibliographic/bd245.html</a></p></article></body></html>

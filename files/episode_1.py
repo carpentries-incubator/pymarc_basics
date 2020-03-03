@@ -1,8 +1,9 @@
-import pymarc
+from pymarc import MARCReader
 
 my_marc_file = "NLNZ_example_marc.marc"
 
-reader = pymarc.MARCReader(open(my_marc_file, 'rb'), force_utf8="True") 
+with open(my_marc_file, 'rb') as data:
+    reader = MARCReader(data)
+    for record in reader:
+        print (record['245'])
 
-for record in reader:
-    print (record['245'])

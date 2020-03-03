@@ -1,5 +1,5 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="teaching" content="0">
-<meta name="exercises" content="0">
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="teaching" content="10">
+<meta name="exercises" content="15">
 <meta name="objectives" content=""><style>body {
   max-width: 980px;
   border: 1px solid #ddd;
@@ -1064,19 +1064,26 @@ body .markdown-body
 <li>Basic preflight checks </li>
 </ul>
 <hr />
-<p>Episode 1: Getting Started</p>
+<h2 id="episode-1-getting-started">Episode 1: Getting Started<a class="headerlink" href="#episode-1-getting-started" title="Permanent link"></a></h2>
 <h1 id="pre-requirements">Pre-Requirements<a class="headerlink" href="#pre-requirements" title="Permanent link"></a></h1>
 <p>The first thing we need to do is make sure we can use Python, and we&rsquo;re all using the correct version of Python. </p>
 <p>If you&rsquo;ve not installed python yet, please install the latest version (<a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>)</p>
-<p>If  you don&rsquo;t have an Interactive Deployment Environment (IDE) install Sublime text v3 (<a href="https://www.sublimetext.com/3">https://www.sublimetext.com/3</a>) N.B. If you laptop has corporate controls/permission, try the portable version. </p>
+<p>If you don&rsquo;t have an Interactive Deployment Environment (IDE), install SublimeText v3 (<a href="https://www.sublimetext.com/3">https://www.sublimetext.com/3</a>) </p>
+<p>N.B. If your device has corporate controls/restrictions/permission, try the portable version - it sometimes works in cases where the full version is blocked.  </p>
+<p>You can use any other IDE that you are used to (Atom, Eclipse, even cmd + notepad&hellip; etc). </p>
+<p>Its easier to troubleshoot if we all use the same set of tools! Do try and use SublimeText if you can to help reduce the things we might need to support you with. </p>
 <h1 id="hello-world">Hello World!<a class="headerlink" href="#hello-world" title="Permanent link"></a></h1>
 <p>Start a new python file in your IDE of choice. </p>
-<p>We&rsquo;re using Sublime Text, so we just need to save a new file as test.py in SublimeText. </p>
+<p>We&rsquo;re using SublimeText, so we just need to save a new file as test.py in SublimeText. </p>
 <p>We can get python to tell us what version it is with the following code:</p>
 <div class="codehilite"><pre><span class="kn">import</span> <span class="nn">sys</span>
 <span class="k">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">)</span>
 </pre></div>
 
+<p>To &lsquo;deploy&rsquo; the script in Sublime, you can use the following keystrokes:</p>
+<p><kbd>Control</kbd> + <kbd>S</kbd> to save your changes</p>
+<p><kbd>Control</kbd> + <kbd>B</kbd> to &ldquo;build&rdquo; the script and run it. </p>
+<p>Its worth remembering these two commands, you&rsquo;ll use them a lot in this lesson! </p>
 <p>We&rsquo;re looking to see where python is installed - theres a version number in the file path. 
 We want to see <code>Python3x</code> to make sure we&rsquo;re all using Python version 3. </p>
 <p><code>C:\Users\gattusoj\AppData\Local\Programs\Python\Python38\python.exe</code></p>
@@ -1086,6 +1093,7 @@ Open terminal if you&rsquo;re on Linux - <kbd>Ctrl</kbd>+<kbd>t</kbd></p>
 <p>To install packages, we use a tool called &lsquo;Pip Installs Packages&rsquo; or better known as PIP. To install pymarc, at the cursor type <code>pip3 install pymarc</code> and hit <kbd>Enter</kbd>. You need to be connected to the public internet to use PIP. 
 If it worked, you should see something like:
 <code>Successfully installed pymarc-3.2.0</code></p>
+<p>Make a folder to hold all the files we&rsquo;ll use in this lesson called <code>pymarc_basics</code> somewhere that you can easily find. </p>
 <p>To test it worked, open your IDE (SublimeText) and make a new python file (e.g. <code>test.py</code>) and type:</p>
 <div class="codehilite"><pre><span class="kn">import</span> <span class="nn">pymarc</span>
 
@@ -1093,19 +1101,28 @@ If it worked, you should see something like:
 </pre></div>
 
 <p>Run the script, and if there is no error messages in the python terminal window and you see the text <code>Hello World!</code>, you&rsquo;ve successfully installed pymarc! </p>
-<p>We need to make sure we have a local copy of the MARC file we&rsquo;ll use for the rest of the lesson. # todo [make this easier to grab the binary] <a href="https://github.com/jayGattusoNLNZ/pymarc_basics/blob/gh-pages/files/NLNZ_example_marc.marc">https://github.com/jayGattusoNLNZ/pymarc_basics/blob/gh-pages/files/NLNZ_example_marc.marc</a> and download the <code>NLNZ_example_marc.marc</code> file.</p>
+<p>We need to make sure we have a local copy of the MARC file we&rsquo;ll use for the rest of the lesson. </p>
+<h1 id="todo-make-this-easier-to-grab-the-binary">todo [make this easier to grab the binary]<a class="headerlink" href="#todo-make-this-easier-to-grab-the-binary" title="Permanent link"></a></h1>
+<p><a href="https://github.com/jayGattusoNLNZ/pymarc_basics/blob/gh-pages/files/NLNZ_example_marc.marc">https://github.com/jayGattusoNLNZ/pymarc_basics/blob/gh-pages/files/NLNZ_example_marc.marc</a> and download the <code>NLNZ_example_marc.marc</code> file.</p>
 <p>Save it in the same folder as your scripts. </p>
+<p>You should have a folder structure that looks like this:</p>
+<div class="codehilite"><pre>pymarc_basics
+    episode_1.py
+    test.py
+    NLNZ_example_marc.marc
+</pre></div>
+
 <h1 id="hello-pymarc">Hello PyMARC!<a class="headerlink" href="#hello-pymarc" title="Permanent link"></a></h1>
 <p>Finally, lets put all this together, and see if we can read the marc file. </p>
 <p>Start a new python file, <code>episode_1.py</code> and type the following code:</p>
-<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">pymarc</span>
+<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">pymarc</span> <span class="kn">import</span> <span class="n">MARCReader</span>
 
 <span class="n">my_marc_file</span> <span class="o">=</span> <span class="s">&quot;NLNZ_example_marc.marc&quot;</span>
 
-<span class="n">reader</span> <span class="o">=</span> <span class="n">pymarc</span><span class="o">.</span><span class="n">MARCReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">my_marc_file</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">),</span> <span class="n">force_utf8</span><span class="o">=</span><span class="s">&quot;True&quot;</span><span class="p">)</span> 
-
-<span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-    <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">])</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">my_marc_file</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">MARCReader</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="k">print</span> <span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="s">&#39;245&#39;</span><span class="p">])</span>
 </pre></div>
 
 <p>We&rsquo;ll cover off this script in the next episode. For now you want to see a list of titles that are included in our test set of MARC records:
