@@ -1,7 +1,7 @@
 ---
 title: Parsing with pymarc
-teaching: 30
-exercises: 30
+teaching: 45
+exercises: 45
 objectives:
 - How to read a marc record with pymarc
 - Finding specific fields with pymarc
@@ -415,7 +415,7 @@ Field 245 indicator 2: 0
 
 # List of PyMARC methods associated with a record object
 
-The pymarc record object has more useful data "shortcuts" that we won't go into the specifics of, but are useful to know. These are all prebuilt methods that get you to key data in a record, assuming (a) its been entered in the record and (b) its been entered in a way the library developers expected.  
+The pymarc record object has more useful data "shortcuts" that we won't go into the specifics of, but are useful to know. These are all pre-built methods that get you to key data in a record, assuming (a) its been entered in the record and (b) its been entered in a way the pymarc developers expected to find it.  
 
 ```Python
 record.author()
@@ -436,7 +436,9 @@ record.subjects()
 record.physicaldescription()
 ```
 
-If you have time, see what happens when you use these "shortcuts" to access bits of data in the pymarc record object. Try looking at record and matching the data item you see, with the original record:
+If you have time, see what happens when you use these "shortcuts" to access bits of data in the pymarc record object. 
+
+Try looking at record and matching the data item you see, with the original record:
 
 ```Python
 for record in reader:
