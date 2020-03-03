@@ -12,15 +12,17 @@ objectives:
 # What is MARC?
 
 "MARC is the acronym for **MA**chine-**R**eadable **C**ataloging. It defines a data format that emerged from a Library of Congress-led initiative that began nearly forty years ago. It provides the mechanism by which computers exchange, use, and interpret bibliographic information, and its data elements make up the foundation of most library catalogs used today. MARC became USMARC in the 1980s and MARC 21 in the late 1990s."
-https://www.loc.gov/marc/
+[https://www.loc.gov/marc/](https://www.loc.gov/marc/)
 
 "MARC Terms and Their Definitions"
-https://www.loc.gov/marc/umb/um01to06.html#part3
+[https://www.loc.gov/marc/umb/um01to06.html#part3](https://www.loc.gov/marc/umb/um01to06.html#part3)
 
-"This online publication provides access to both the full and concise versions of the MARC 21 Format for Bibliographic Data." http://www.loc.gov/marc/bibliographic/
+"This online publication provides access to both the full and concise versions of the MARC 21 Format for Bibliographic Data." 
+[http://www.loc.gov/marc/bibliographic/](http://www.loc.gov/marc/bibliographic/)
 
 
 # Reading MARC files with PyMARC
+
 Lets take a look at a marc record, and see what it contains. 
 
 Start a new python file  <code>episode_2.py</code> and type the following script:
@@ -76,7 +78,7 @@ We'll get into the details of some of the control fields later on. For now lets 
 =245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
 ```
 
-We've established the <code>=245</code> is telling us the field name. We can see a couple of spaces, and then the digits <code>1</code> and <code>0</code>. These are the two 'indicators' for the field. Sometimes they're empty or blank, some times they're unused (and encountered as the <code>\</code>) character, and sometimes they're set to a value like we can see here. We'll look at how to parse this information later. 
+We've established the <code>=245</code> is telling us the field name. We can see a couple of spaces, and then the digits <code>1</code> and <code>0</code>. These are the two 'indicators' for the field. Sometimes they're empty or blank, sometimes they're unused (and sometimes encountered as a <code>slash</code>) character. Sometimes they're set to a value like we can see here. We'll look at how to parse this information in a moment. 
 
 Following the two indicators, we can see some data thats separated by the <code>$</code> character:
 
@@ -105,9 +107,12 @@ Spend a moment looking at the MARC specs for this field, and the data we have in
 > > ## Solution
 > >
 > >Indicator 1 is set to the value <code>1</code>
+> >
 > >Looking at the MARC standard for this field, we can see that has the value "1 - Added entry"
 > >
+> >
 > >Indicator 2 is set to the value <code>0</code>
+> >
 > >Looking at the MARC standard for this field, we can see that has the value "0 - No nonfiling characters"
 > >
 > > {: .output}
@@ -126,12 +131,17 @@ Spend a moment looking at the MARC specs for this field, and the data we have in
 > > Referring to the MARC standard we can see:
 > >
 > > "$a - Title"
+> >
 > > "Data includes parallel titles, titles subsequent to the first (in items lacking a collective title), and other title information."
+> >
 > >
 > > "$b - Remainder of title"
+> >
 > > "Data includes parallel titles, titles subsequent to the first (in items lacking a collective title), and other title information."
 > >
+> >
 > >  "$c - Statement of responsibility, etc."
+> >
 > > "First statement of responsibility and/or remaining data in the field that has not been subfielded by one of the other subfield codes."
 > >
 > > {: .output}
