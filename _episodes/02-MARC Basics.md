@@ -6,6 +6,9 @@ objectives:
 - What is MARC?
 - Where are helpful resource for MARC?
 - Understanding the basic structure of a MARC file in pymarc
+keypoints:
+- Knowing where to find resources that describe MARC records/fields
+- Knowing how to identify the component parts of a MARC record/field
 ---
 ## Episode 2: MARC basics
 
@@ -115,7 +118,6 @@ Spend a moment looking at the MARC specs for this field, and the data we have in
 > >
 > >Looking at the MARC standard for this field, we can see that has the value "0 - No nonfiling characters"
 > >
-> > {: .output}
 > {: .solution}
 {: .challenge}
 
@@ -144,7 +146,6 @@ Spend a moment looking at the MARC specs for this field, and the data we have in
 > >
 > > "First statement of responsibility and/or remaining data in the field that has not been subfielded by one of the other subfield codes."
 > >
-> > {: .output}
 > {: .solution}
 {: .challenge}
 
