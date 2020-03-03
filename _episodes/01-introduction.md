@@ -7,24 +7,12 @@ objectives:
 - Install and check pymarc
 - Collect data files used in lesson
 - Basic preflight checks 
+keypoints:
+- The software we need for the lesson is correct versions and works as expected
+- The files we need for rest of lesson are available
 ---
 
 ## Episode 1: Getting Started
-
-
-# Pre-Requirements
-
-The first thing we need to do is make sure we can use Python, and we're all using the correct version of Python. 
-
-If you've not installed python yet, please install the latest version (https://www.python.org/downloads/)
-
-If you don't have an Interactive Deployment Environment (IDE), install SublimeText v3 (https://www.sublimetext.com/3) 
-
-N.B. If your device has corporate controls/restrictions/permission, try the portable version - it sometimes works in cases where the full version is blocked.  
-
-You can use any other IDE that you are used to (Atom, Eclipse, even cmd + notepad... etc). 
-
-Its easier to troubleshoot if we all use the same set of tools! Do try and use SublimeText if you can to help reduce the things we might need to support you with. 
 
 # Hello World!
 
@@ -68,16 +56,18 @@ To test it worked, open your IDE (SublimeText) and make a new python file (e.g. 
 ```Python
 import pymarc
 
-print ("Hello World!") 
+print ("{}".format("Hello World!") 
 ```
 
 Run the script, and if there is no error messages in the python terminal window and you see the text <code>Hello World!</code>, you've successfully installed pymarc! 
 
+We're using a slightly over complicated way of printing our "Hello World!" string in this test. There a subtle but important difference in some versions of Python, and how it handles text. By using this <code>format()</code> method we can double check that we're using a version of Python that will work OK with the rest of the lesson.  
+
 We need to make sure we have a local copy of the MARC file we'll use for the rest of the lesson. You can find all the data files, and helper scripts in the setup folder: [http://bit.ly/2PItN0Y](http://bit.ly/2PItN0Y)
 
-At minimum, download the <code>NLNZ_example_marc.marc</code> file.
+At minimum, download the <code>NLNZ_example_marc.marc</code> file. There are other <code>.marc</code> files in that location. These just contain more records. Download them if you want to have more MARC records to explore. 
 
-Save it in the same folder as your scripts. 
+Save any MARC files in to the same folder as your scripts. 
 
 You should have a folder structure that looks like this:
 
@@ -86,6 +76,7 @@ pymarc_basics
 	episode_1.py
 	test.py
 	NLNZ_example_marc.marc
+	...
 ```
 
 # Hello PyMARC! 
@@ -95,31 +86,29 @@ Finally, lets put all this together, and see if we can read the marc file.
 Start a new python file, <code>episode_1.py</code> and type the following code:
 
 ```Python
-from pymarc import MARCReader
+import pymarc
 
 my_marc_file = "NLNZ_example_marc.marc"
 
 with open(my_marc_file, 'rb') as data:
-	reader = MARCReader(data)
+	reader = pymarc.MARCReader(data)
 	for record in reader:
-		print (record['245'])
+		print (record.title())
 ```
 
 
 We'll cover off this script in the next episode. For now you want to see a list of titles that are included in our test set of MARC records:
 ```
-=245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
-=245  10$aDifficult country :$ban informal history of Murchison /$cMargaret C. Brown.
-=245  00$aThese fortunate isles :$bsome Russian perceptions of New Zealand in the nineteenth and early twentieth centuries /$cselected, translated and annotated by John Goodliffe.
-=245  10$aAs high as the hills :$bthe centennial history of Picton /$cby Henry D. Kelly.
-=245  10$aRevised establishment plan.
-=245  02$aA Statistical profile of young women /$ccompiled for the YWCA of Aotearoa-New Zealand by Nic Mason, Dianna Morris and Angie Cairncross ; with the assistance of Shell New Zealand.
-=245  10$aChilton Saint James :$ba celebration of 75 years, 1918-1993 /$cJocelyn Kerslake.
-=245  10$aTatum, a celebration :$b50 years of Tatum Park /$cby Tom Howarth.
-=245  04$aThe Discussion document of the Working Party on Fire Service Levy /$b... prepared by the Working Party on the Fire Service Levy.
-=245  00$a1991 New Zealand census of population and dwellings.$pNew Zealanders at home.
+Larger than life : the story of Eric Baume /
+Difficult country : an informal history of Murchison /
+These fortunate isles : some Russian perceptions of New Zealand in the nineteenth and early twentieth centuries /
+As high as the hills : the centennial history of Picton /
+Revised establishment plan.
+A Statistical profile of young women /
+Chilton Saint James : a celebration of 75 years, 1918-1993 /
+Tatum, a celebration : 50 years of Tatum Park /
+The Discussion document of the Working Party on Fire Service Levy / ... prepared by the Working Party on the Fire Service Levy.
+1991 New Zealand census of population and dwellings.
 ```
-
-
 
 {% include links.md %}

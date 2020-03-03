@@ -6,6 +6,10 @@ objectives:
 - How to read a marc record with pymarc
 - Finding specific fields with pymarc
 - finding specific data with pymarc
+keypoints:
+- We can print out any field from a MARC record we are interested in. 
+- We can search for specific information in a set of MARC records. 
+- We understand how to explore fields, indicators and subfields in any MARC record.  
 ---
 ## Episode 3: Parsing with pymarc
 
@@ -27,7 +31,7 @@ with open(my_marc_file, 'rb') as data:
         print (record)
 ```
 
-We can used the data object created by pymarc to only process fields we're interested in. We can do that by telling python the field name e.g. <code>print (record['245'])</code> In this piece of code we're asking pymarc to print any field in our record object that has the label/name <code>245</code>  
+We can used the data object created by pymarc to only process fields we're interested in. We can do that by telling python the field name/label we're interested in e.g. <code>print (record['245'])</code> In this piece of code we're asking pymarc to print any field in our record object that has the label/name <code>245</code>  
 
 If we add this piece of code to our basic file parser we can see all the title statements for our test set:
 
@@ -50,7 +54,21 @@ for record in reader:
 =245  00$a1991 New Zealand census of population and dwellings.$pNew Zealanders at home.
 ```
 
-What is the data type does the record object look like? (<code>print (type(record)) won't help much, can you think why?</code>) 
+
+> ## Understanding Python data types and data objects
+>
+> What data type does the record object appear to be?
+>
+> <code>print (type(record)</code> won't help much, can you think why?
+> > ## Solution
+> > 
+> >Getting used to what data types look like, and how to 'ask Python' what they actually are important skills to develop. 
+> >
+> >We can ask python to tell us what the data type is of any object using the <code>type()</code> function. Doing this reveals that the record is a <code>class</code> object - <code><class 'pymarc.record.Record'><\code>
+> >
+> {: .solution}
+{: .challenge}
+
 
 Behind the scenes when this script is run, python looks at the date object that pymarc created, and looks for the bit that has the label, or 'key' of "245". 
 
@@ -532,3 +550,8 @@ See if you can find any records with the OCLC identifier "39818086"
 Can you count how many records have more than one 500 fields?
 #todo - what is the main language indicator!?
 Can you find out how many records describe an item thats written in English? (hint: We can look in the <code>record.leader</code> in position )
+
+
+
+
+{% include links.md %}

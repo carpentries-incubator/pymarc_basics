@@ -7,8 +7,8 @@ objectives:
 - Where are helpful resource for MARC?
 - Understanding the basic structure of a MARC file in pymarc
 keypoints:
-- Knowing where to find resources that describe MARC records/fields
-- Knowing how to identify the component parts of a MARC record/field
+- We know where to find resources that describe MARC records/fields
+- We know how to identify the component parts of a MARC record/field
 ---
 ## Episode 2: MARC basics
 
