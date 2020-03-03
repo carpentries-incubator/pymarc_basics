@@ -115,29 +115,14 @@ Spend a moment looking at the MARC specs for this field, and the data we have in
 {: .challenge}
 
 
-> ## What do the three subfields tell us about the 245 field?
->
-> We can see the subfields 'a', 'b', and 'c'
-> According to the MARC standard we can see the following:
-> "$a - Title"
-> "Title proper and alternative title, excluding the designation of the number or name of a part."
->
-> "$b - Remainder of title"
-> "Data includes parallel titles, titles subsequent to the first (in items lacking a collective title), and other title information."
->
-> "$c - Statement of responsibility, etc."
-> "First statement of responsibility and/or remaining data in the field that has not been subfielded by one of the other subfield codes."
-
-
 > ## Using the MARC standard to "read" a field - subfields
 >
 > What do the three subfields tell us about the 245 field?
 >
-> {: .source}
->
 > > ## Solution
 > >
 > > We can see the subfields 'a', 'b', and 'c'
+> >
 > > Referring to the MARC standard we can see:
 > >
 > > "$a - Title"
@@ -151,9 +136,6 @@ Spend a moment looking at the MARC specs for this field, and the data we have in
 > >
 > > {: .output}
 > {: .solution}
-{: .challenge}
-
-
 {: .challenge}
 
 
