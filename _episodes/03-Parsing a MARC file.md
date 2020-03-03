@@ -132,7 +132,8 @@ Subfield 'c': by Arthur Manning.
 > > The text we see is three individual bits of text. They are not particularly well connected to each other in this form - we need to process all of the 245 field as a whole to make sure we're operating on the data we're expecting. 
 > >
 > > Notice the punctuation that is included in the text. We might need to do something to clean that up if we're going to further process the data we find in this field. The use of punctuation marks within a piece of information to indicate specific parts within the data item is not limited to the 245 field. We can see it variously throughout the MARC record. 
-> >
+> > "In the past, catalogers recorded bibliographic data as blocks of text and used punctuation to demarcate and provide context for the various data elements. This made data understandable to users when it was presented on cards and in online catalogs."
+> > [https://www.loc.gov/aba/pcc/documents/PCC-Guidelines-Minimally-Punctuated-MARC-Data.docx](https://www.loc.gov/aba/pcc/documents/PCC-Guidelines-Minimally-Punctuated-MARC-Data.docx)
 > > This is one of the interesting challenges we face when processing MARC records in bulk/computationally. These punctuation marks have a strong historical place in cataloging practice, and as a result, they're an artifact we need to be aware of and deal with computationally.
 > {: .solution}
 {: .challenge}
@@ -192,7 +193,7 @@ Larger than life : the story of Eric Baume /
 <class 'str'>
 ```
 
-We can use a similar approach to find a particular record. Lets say we're looking for the record with the 001 identifer of <code>99628153502836</code>. We can loop through the records in our <code>pymarc.reader</code> object and look for a match:
+We can use a similar approach to find a particular record. Lets say we're looking for the record with the 001 identifier of <code>99628153502836</code>. We can loop through the records in our <code>pymarc.reader</code> object and look for a match:
 
 ```Python
 	for record in reader:
@@ -206,12 +207,32 @@ We can make this a little more useful by abstracting the search id into a variab
 	search_id = 99628153502836
 	for record in reader:
 		if record['001'].value() == str(search_id):
-			print (f"Success! found record with id {search_id}")
+			print ("Success! found record with id {}.format(search_id)")
 ```
 
 What are the main differences between these two code snippets?
 
-Why do we need the <code>str()</code> conversion? Can you think of a different way of solving the same problem?
+> ## Using variables in code
+> What is main difference between these two code snippets? Why is it useful?
+> > ## Solution
+> > In the first example we're hard coded the text we want to search for. Both in the search itself, and the successful response. 
+> > In the second example we've used a variable to hold the identifier. This gets reused in both the search, and the successful response.   
+> >
+> >By doing this we've made the code much more useful. We can reuse the same code and answer more questions just by changing one variable. This is a good basic process to use when you're writing your code. Untangling hard coded values can be a very time consuming and confusing process  
+> {: .solution}
+{: .challenge}
+
+
+> ## More on data types... 
+> Why do we need the <code>str()</code> conversion? Can you think of a different way of solving the same problem?
+> > ## Solution
+> >In Python the string <code>"1234"</code> is not the same as the integer <code>1234</code>.  When trying to match data with python we have to be careful to make sure we are matching across data types e.g. strings with strings, or integers with integers. If we don't we will miss matches. 
+> >
+> > We didn't have to convert the search term <code>search_id</code> into a string. We equally could have turned the record ID data into a integer <code>if int(record['001'].value()) == search_id</code>
+> >
+> > There are pros and cons for each approach. The main thing we should be aware of is that numbers and strings are different things, and <i>numbers as strings</i> is a particularly common problem to encounter. 
+> {: .solution}
+{: .challenge}
 
 Lets make our search a little more interesting. Lets say we're interested in in any record that contains the string "New Zealand" in the <code>245</code> field
 
