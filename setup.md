@@ -22,13 +22,13 @@ Make a folder on your device called "pymarc_basics".
 
 Download the following files, and make sure they're moved to your workshop folder.
 
-1.  [NLNZ_example_marc.marc](NLNZ_example_marc.marc)
+1.  [NLNZ_example_marc.marc](/setup/NLNZ_example_marc.marc)
 
 This is the main MARC data file we will be using. It contains 10 MARC records. 
 
-2. [NLNZ_100_example_marc.marc](NLNZ_100_example_marc.marc)
+2. [NLNZ_100_example_marc.marc](/setup/NLNZ_100_example_marc.marc)
 
-3. [NLNZ_1000_example_marc.marc](NLNZ_1000_example_marc.marc)
+3. [NLNZ_1000_example_marc.marc](/setup/NLNZ_1000_example_marc.marc)
 
 These are files that contain more MARC records. 100 in (2) and 1,000 in (3). Download them if you want more data to experiment with. 
 
