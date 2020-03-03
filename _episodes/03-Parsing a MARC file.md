@@ -61,11 +61,17 @@ for record in reader:
 >
 > <code>print (type(record)</code> won't help much, can you think why?
 > > ## Solution
+> >
+> > The record object that PyMARC creates looks like its an instance of the python data type called a dictionary. 
+> >
+> > Getting used to what data types look like, and how to 'ask Python' what they actually are important skills to develop. 
+> >
+> > We can ask python to tell us what the data type is of any object using the <code>type()</code> function. Doing this reveals that the record is a <code>class</code> object - <code><class 'pymarc.record.Record'></code>. 
+> >
+> > Once we've spent a little time around python code, we might guess that the record item is a particular data type called a dictionary or <code>dict()</code>
 > > 
-> >Getting used to what data types look like, and how to 'ask Python' what they actually are important skills to develop. 
-> >
-> >We can ask python to tell us what the data type is of any object using the <code>type()</code> function. Doing this reveals that the record is a <code>class</code> object - <code><class 'pymarc.record.Record'><\code>
-> >
+> > We're not going to spend any time in this lesson exploring either <code>class</code> or <code>dict</code> structures in this lesson. 
+> >If you're interested to learn more about them there are many free resources that can help, like [https://www.tutorialspoint.com/python/python_data_structure.htm](https://www.tutorialspoint.com/python/python_data_structure.htm)
 > {: .solution}
 {: .challenge}
 
