@@ -11,7 +11,12 @@ FIXME: home page introduction
 
 > ## Prerequisites
 >
-> FIXME
+> Python 3
+>	Ideally latest version
+>	Minimum v3.4
+>
+> PyMARC (installation is covered in lesson)
+
 {: .prereq}
 
 {% include links.md %}

@@ -9,12 +9,12 @@ you have the software and data files you'll need for your workshop installed.
 
 # Software
 
-We cover off the software installation in episode 1, but feel free to get a head of the workshop and install the software now. 
+We cover off the software installation in episode 1, but feel free to get ahead of the workshop and install the software now. 
 
 1. Python v3.x, ideally the latest version. [https://www.python.org/downloads/](https://www.python.org/downloads/)
 2. SublimeText, ideally v3. [https://www.sublimetext.com/3](https://www.sublimetext.com/3)
 3. PyMARC. install via pip3 
-	From commandline type: <code>pip3 install pymarc</code> 
+	From command line type: <code>pip3 install pymarc</code> 
 
 # Data files
 
@@ -43,3 +43,8 @@ Download them if you want to see some reference/ example python scripts.
 3.	[episode_3.py](/setup/episode_3.py)
 4.	[episode_4.py](/setup/episode_4.py)
 5.	[episode_5.py](/setup/episode_5.py)
+
+
+
+
+
