@@ -123,8 +123,5 @@ Spend a moment looking at the MARC specs for this field, and the data we have in
 
 {: .challenge}
 
-http://www.loc.gov/marc/bibliographic/bd245.html
-
-
 
 {% include links.md %}
