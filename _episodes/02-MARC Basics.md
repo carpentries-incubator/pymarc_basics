@@ -94,10 +94,35 @@ c| by Arthur Manning.
 
 Spend a moment looking at the MARC specs for this field, and the data we have in this record. 
 
-What do the indicators tell us about this field? 
-What do the three subfields tell us about this field? 
+ 
+> ## What do the indicators tell us about the 245 field?
+>
+> Indicator 1 is set to the value <code>1</code>
+> Looking at the MARC standard for this field, we can see that has the value "1 - Added entry"
+>
+> Indicator 2 is set to the value <code>0</code>
+> Looking at the MARC standard for this field, we can see that has the value "0 - No nonfiling characters"
+
+{: .challenge}
+
+
+> ## What do the three subfields tell us about the 245 field? ?
+>
+> We can see the subfields 'a', 'b', and 'c'
+> According to the MARC standard we can see the following:
+> "$a - Title"
+> "Title proper and alternative title, excluding the designation of the number or name of a part."
+>
+> "$b - Remainder of title"
+> "Data includes parallel titles, titles subsequent to the first (in items lacking a collective title), and other title information."
+>
+> "$c - Statement of responsibility, etc."
+> "First statement of responsibility and/or remaining data in the field that has not been subfielded by one of the other subfield codes."
+
+{: .challenge}
 
 http://www.loc.gov/marc/bibliographic/bd245.html
 
 
 
+{% include links.md %}
