@@ -13,7 +13,8 @@ We cover off the software installation in episode 1, but feel free to get a head
 
 1. Python v3.x, ideally the latest version. https://www.python.org/downloads/
 2. SublimeText, ideally v3. https://www.sublimetext.com/3
-3. PyMARC. install via pip3 [from commandline type: <code>pip3 install pymarc</code>] 
+3. PyMARC. install via pip3 
+	From commandline type: <code>pip3 install pymarc</code> 
 
 # Data files
 
@@ -33,8 +34,8 @@ These are files that contain more MARC records. 100 in (2) and 1,000 in (3). Dow
 
 The following files are the python helper scripts for the episodes in this lesson. Download them if you want reference some example scripts. 
 
-1.  [episode_1.py](episode_1.py)
-2.	[episode_2.py](episode_2.py)
-3.	[episode_3.py](episode_3.py)
-4.	[episode_4.py](episode_4.py)
-5.	[episode_5.py](episode_5.py)
+1.  [episode_1.py](../setup/episode_1.py)
+2.	[episode_2.py](../setup/episode_2.py)
+3.	[episode_3.py](../setup/episode_3.py)
+4.	[episode_4.py](../setup/episode_4.py)
+5.	[episode_5.py](../setup/episode_5.py)
