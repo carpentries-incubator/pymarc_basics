@@ -68,9 +68,9 @@ You should see a marc record, line-by-line, in the terminal window:
 # Understanding MARC field in PyMARC 
 Its useful to understand the structure of the data object we can see, and how it relates to the MARC format. 
 
-Notice the first piece of data starts with an <code>=</code>. The first one we see is <code>=LDR</code>. The <code>=</code> tells us its a field label, or tag, and the following 3 characters are the tag value. In this case <code>LDR</code> tells us we're reading the leader field. All other MARC fields are zero-padded 3 digit numbers. The following data on that row is the field value. In MARC, the first 9 fields are called control fields, and are structured a little differently to all other fields. Its worth referring to the MARC guidelines to make sure we can correctly understand what the data is telling us...  http://www.loc.gov/marc/bibliographic/bd00x.html
+Notice the first piece of data starts with an <code>=</code>. The first one we see is <code>=LDR</code>. The <code>=</code> tells us its a field label, or tag, and the following 3 characters are the tag value. In this case <code>LDR</code> tells us we're reading the leader field. All other MARC fields are zero-padded 3 digit numbers. The following data on that row is the field value. In MARC, the first 9 fields are called control fields, and are structured a little differently to all other fields. Its worth referring to the MARC guidelines to make sure we can correctly understand what the data is telling us...  [http://www.loc.gov/marc/bibliographic/bd00x.html](http://www.loc.gov/marc/bibliographic/bd00x.html)
 
-We'll get into the details of some of the control fields later on. For now lets focus on one of the "standard" fields and take a look at how its made up. Lets look at the 245 field, the "title statement" http://www.loc.gov/marc/bibliographic/bd245.html
+We'll get into the details of some of the control fields later on. For now lets focus on one of the "standard" fields and take a look at how its made up. Lets look at the 245 field, the "title statement" [http://www.loc.gov/marc/bibliographic/bd245.html](http://www.loc.gov/marc/bibliographic/bd245.html)
 
 ```
 =245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
