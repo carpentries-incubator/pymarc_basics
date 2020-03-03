@@ -59,7 +59,7 @@ for record in reader:
 >
 > What data type does the record object appear to be?
 >
-> <code>print (type(record)</code> won't help much, can you think why?
+> Hint: <code>print (type(record))</code>
 > > ## Solution
 > >
 > > The record object that PyMARC creates looks like its an instance of the python data type called a dictionary. 
@@ -68,15 +68,15 @@ for record in reader:
 > >
 > > We can ask python to tell us what the data type is of any object using the <code>type()</code> function. Doing this reveals that the record is a <code>class</code> object - <code><class 'pymarc.record.Record'></code>. 
 > >
-> > Once we've spent a little time around python code, we might guess that the record item is a particular data type called a dictionary or <code>dict()</code>
+> > Once we've spent a little time around python code, we might guess that the record item is a particular data type called a dictionary or <code>dict()</code>. The main clue we might rely on is the square brackets after the object name. e.g <code>my_dict['my_dict_key']</code>
 > > 
-> > We're not going to spend any time in this lesson exploring either <code>class</code> or <code>dict</code> structures in this lesson. 
+> > We're not going to spend serious time in this lesson exploring either <code>class</code> or <code>dict</code> structures in this lesson. 
 > >If you're interested to learn more about them there are many free resources that can help, like [https://www.tutorialspoint.com/python/python_data_structure.htm](https://www.tutorialspoint.com/python/python_data_structure.htm)
 > {: .solution}
 {: .challenge}
 
 
-Behind the scenes when this script is run, python looks at the date object that pymarc created, and looks for the bit that has the label, or 'key' of "245". 
+Behind the scenes when this script is run, python looks at the data object that pymarc created, and looks for the part of it that has the label, or 'key' of "245". 
 
 See what happens if you give it a key that isn't included in the data object:
 
@@ -92,7 +92,7 @@ None
 
 ```
 
-Notice it doesn't give you an error or otherwise let you know it did find that key in the data object. Its useful to know this happens if we use an key that doesn't exist. If you see the return <code>None</code> in your scripts where you are expecting an actual value, double check the key you've used. Common errors would be typos (e.g. <code>record['254']</code> instead of <code>record['245']</code>) or using a number instead of a string (e.g. <code>record[245]</code> instead of <code>record['245']</code>).
+Notice it doesn't give you an error or otherwise strongly signal that it did not find the key you're interested in the data object. Its useful to know this happens if we use an key that doesn't exist. If you see the return <code>None</code> in your scripts where you are expecting an actual value, double check the key you've used. Common errors would be typos (e.g. <code>record['254']</code> instead of <code>record['245']</code>) or using a number instead of a string (e.g. <code>record[245]</code> instead of <code>record['245']</code>).
 
 In this case, returns <code>None</code>, which itself is an important concept in Python. Its worth pausing for a moment and making sure we understand what <code>None</code> means in the Python context. 
 
@@ -102,7 +102,7 @@ In this case, returns <code>None</code>, which itself is an important concept in
 >
 >None is a datatype of its own (NoneType) and only None can be None."
 
-https://www.w3schools.com/python/ref_keyword_none.asp 
+[https://www.w3schools.com/python/ref_keyword_none.asp](https://www.w3schools.com/python/ref_keyword_none.asp) 
 
 # Accessing Subfields
 
@@ -115,6 +115,8 @@ for record in reader:
 	print ("Subfield 'c':", record['245']['c'])
 	quit()
 ```
+
+Notice how we're asking for 3 things in each of these print statements. We're asking python to look in the data object called <code>record</code>. We're asking for the part of that item that has the key <code>'245'</code>. Within that subset of the <code>record</code> object, we're further asking for the part that has the key <code>'a'</code>, <code>'b'</code> or <code>'c'</code> 
 _____
 
 ```
@@ -122,13 +124,34 @@ Subfield 'a': Larger than life :
 Subfield 'b': the story of Eric Baume /
 Subfield 'c': by Arthur Manning.
 ```
-What do you notice about these pieces of data? Whatg might we need to consider if we want to use data that potentially spans multiple subfields? 
+
+> ## Nuance of punctuation use in MARC
+>
+> What do you notice about these pieces of data? 
+> > ## Solution
+> > The text we see is three individual bits of text. They are not particularly well connected to each other in this form - we need to process all of the 245 field as a whole to make sure we're operating on the data we're expecting. 
+> >
+> > Notice the punctuation that is included in the text. We might need to do something to clean that up if we're going to further process the data we find in this field. The use of punctuation marks within a piece of information to indicate specific parts within the data item is not limited to the 245 field. We can see it variously throughout the MARC record. 
+> >
+> > This is one of the interesting challenges we face when processing MARC records in bulk/computationally. These punctuation marks have a strong historical place in cataloging practice, and as a result, they're an artifact we need to be aware of and deal with computationally.
+> {: .solution}
+{: .challenge}
+
+
+> ## Considerations when working with related subfields
+> What might we need to consider if we want to use data that potentially spans multiple subfields? 
+> > ## Solution
+> >Supposing we want to try and match title of an item with a MARC record, and a list of book titles we've been given to compare we might find ourselves with a problem.   
+> >
+> >How do we know which of the subfields is the right amount data to search for a match? This isn't a new problem for libraries - its another facet of any deduping process! For us working in the MARC record via python, we have to be aware of the data we're using, both inside the MARC, and that we're trying to match against. We might need to join two or more fields. We might need to remove the catalogers punctuation to help with clean matching.   
+> {: .solution}
+{: .challenge}
 
 There are a few other ways we can get to the same data that are worth exploring. 
 
 The data object that pymarc creates has a method called "<code>value()</code>". We can use this to return the data field as text string without any subfield markers or indicators. 
 
-This is also a good opportunity to explore another useful method, "<code>type()</code>". 
+This is also a good opportunity to explore that "<code>type()</code>" method. 
 
 PyMARC gives us some convenient keywords to help us access key bits of data. One of those is the keyword <code>.title()</code>. 
 
