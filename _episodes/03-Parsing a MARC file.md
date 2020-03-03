@@ -1,5 +1,5 @@
 ---
-title: "Parsing with pymarc"
+title: Parsing with pymarc
 teaching: 30
 exercises: 30
 objectives:
@@ -413,11 +413,11 @@ Field 245 indicator 1: 1
 Field 245 indicator 2: 0
 ```
 
-# List of PyMARC methods 
+# List of PyMARC methods associated with a record object
 
-The pymarc record object has more useful data "shortcuts" that we won't go into the specifics of, but are useful to know
+The pymarc record object has more useful data "shortcuts" that we won't go into the specifics of, but are useful to know. These are all prebuilt methods that get you to key data in a record, assuming (a) its been entered in the record and (b) its been entered in a way the library developers expected.  
 
-```python
+```Python
 record.author()
 record.isbn()
 record.issn()
@@ -436,8 +436,17 @@ record.subjects()
 record.physicaldescription()
 ```
 
-If you have time see what happens when you use these "shortcuts". 
+If you have time, see what happens when you use these "shortcuts" to access bits of data in the pymarc record object. Try looking at record and matching the data item you see, with the original record:
 
+```Python
+for record in reader:
+	print (record)
+	print ("\n______________________________\n\n")
+	print (record.author())
+	print (record.isbn())
+	print (record.issn())
+
+	quit()
 
 # Building a basic parser!
 
