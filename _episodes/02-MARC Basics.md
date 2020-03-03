@@ -97,22 +97,10 @@ Spend a moment looking at the MARC specs for this field, and the data we have in
 [http://www.loc.gov/marc/bibliographic/bd245.html](http://www.loc.gov/marc/bibliographic/bd245.html)
 
 
-> ## What do the indicators tell us about the 245 field?
->
-> Indicator 1 is set to the value <code>1</code>
-> Looking at the MARC standard for this field, we can see that has the value "1 - Added entry"
->
-> Indicator 2 is set to the value <code>0</code>
-> Looking at the MARC standard for this field, we can see that has the value "0 - No nonfiling characters"
-
-{: .challenge}
-
-
 > ## Using the MARC standard to "read" a field - indicators
 >
 > What do the two indicators tell us about the 245 field?
 >
-> {: .source}
 >
 > > ## Solution
 > >
