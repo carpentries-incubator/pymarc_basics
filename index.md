@@ -12,11 +12,9 @@ In this lesson you'll learn how to engage with MARC binary files with Python. Th
 
 > ## Prerequisites
 >
-> Python 3
->	Ideally latest version
->	Minimum v3.4
+> Python v3.4 or later more up to date. (See Episode 1)
 >
-> PyMARC (installation is covered in lesson - Episode 1)
+> PyMARC (See Episode 1)
 
 {: .prereq}
 

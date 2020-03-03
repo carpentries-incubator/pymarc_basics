@@ -73,9 +73,9 @@ print ("Hello World!")
 
 Run the script, and if there is no error messages in the python terminal window and you see the text <code>Hello World!</code>, you've successfully installed pymarc! 
 
-We need to make sure we have a local copy of the MARC file we'll use for the rest of the lesson. 
-# todo [make this easier to grab the binary] 
-https://github.com/jayGattusoNLNZ/pymarc_basics/blob/gh-pages/files/NLNZ_example_marc.marc and download the <code>NLNZ_example_marc.marc</code> file.
+We need to make sure we have a local copy of the MARC file we'll use for the rest of the lesson. You can find all the data files, and helper scripts in the setup folder: [http://bit.ly/2PItN0Y](http://bit.ly/2PItN0Y)
+
+At minimum, download the <code>NLNZ_example_marc.marc</code> file.
 
 Save it in the same folder as your scripts. 
 
@@ -119,3 +119,7 @@ We'll cover off this script in the next episode. For now you want to see a list 
 =245  04$aThe Discussion document of the Working Party on Fire Service Levy /$b... prepared by the Working Party on the Fire Service Levy.
 =245  00$a1991 New Zealand census of population and dwellings.$pNew Zealanders at home.
 ```
+
+
+
+{% include links.md %}
