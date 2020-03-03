@@ -94,7 +94,9 @@ c| by Arthur Manning.
 
 Spend a moment looking at the MARC specs for this field, and the data we have in this record. 
 
- 
+[http://www.loc.gov/marc/bibliographic/bd245.html](http://www.loc.gov/marc/bibliographic/bd245.html)
+
+
 > ## What do the indicators tell us about the 245 field?
 >
 > Indicator 1 is set to the value <code>1</code>
