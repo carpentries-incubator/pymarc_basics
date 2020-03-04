@@ -22,7 +22,7 @@ We're using SublimeText, so we just need to save a new file as test.py in Sublim
 
 We can get python to tell us what version it is with the following code:
 
-```Python
+```python
 import sys
 print(sys.executable)
 ```
@@ -53,7 +53,7 @@ Make a folder to hold all the files we'll use in this lesson called <code>pymarc
 
 To test it worked, open your IDE (SublimeText) and make a new python file (e.g. <code>test.py</code>) and type:
 
-```Python
+```python
 import pymarc
 
 print ("{}".format("Hello World!") 
@@ -85,7 +85,7 @@ Finally, lets put all this together, and see if we can read the marc file.
 
 Start a new python file, <code>episode_1.py</code> and type the following code:
 
-```Python
+```python
 import pymarc
 
 my_marc_file = "NLNZ_example_marc.marc"

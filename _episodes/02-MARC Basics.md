@@ -30,7 +30,7 @@ Lets take a look at a marc record, and see what it contains.
 
 Start a new python file  <code>episode_2.py</code> and type the following script:
 
-```Python
+```python
 import pymarc
 
 my_marc_file = "NLNZ_example_marc.marc"

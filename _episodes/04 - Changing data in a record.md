@@ -3,14 +3,14 @@ title: Changing a record with PyMARC
 teaching: 30
 exercises: 30
 objectives:
+- How to change some information in a record
 - How to delete some information from a record
 - How to add some information from a record
-- How to change some information in a record
 - How to make a new record 
 keypoints:
 - We can manipulate a MARC record with PyMARC
-- We can add a field to record
 - We can change the information in a record
+- We can add a field to record
 - We can make a new record 
 ---
 Episode 4: Parsing with pymarc

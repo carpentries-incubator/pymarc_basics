@@ -27,29 +27,38 @@ print ()
 with open(my_marc_file, 'rb') as data:
     reader = MARCReader(data)
     for record in reader:
-        my_record = deepcopy(record)
-        print (id(record))
-        print (id(my_record))
 
-        print (my_record)
 
-        break
+        ind_2 =  record['245'].indicator2
+        if ind_2 != '0':
+            print (record['245'])
+            print ()
+#         my_record = deepcopy(record)
+#         print (id(record))
+#         print (id(my_record))
 
-print ()
-print ("_______ making a deep copy _______")
-print ()
+#         print (my_record)
 
-with open(my_marc_file, 'rb') as data:
-    reader = MARCReader(data)
-    for record in reader:
-        my_record = deepcopy(record)
+#         break
 
-        # we only need to update the 'a' subfield.
-        # note the catalogers punctuation... we must include the commas. 
-        my_record['100']['a'] = "Manning, Arthuretta,"
+# print ()
+# print ("_______ making a deep copy _______")
+# print ()
 
-        #comparing the two
-        print (my_record['100'])
-        print (record['100'])
+# with open(my_marc_file, 'rb') as data:
+#     reader = MARCReader(data)
+#     for record in reader:
+#         my_record = deepcopy(record)
 
-        break
+#         # we only need to update the 'a' subfield.
+#         # note the catalogers punctuation... we must include the commas. 
+#         my_record['100']['a'] = "Manning, Arthuretta,"
+
+#         #comparing the two
+#         print (my_record['100'])
+#         print (record['100'])
+
+#         break
+
+
+

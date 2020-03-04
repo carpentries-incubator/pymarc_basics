@@ -489,9 +489,9 @@ for record in reader:
 ```
 _____
 ```
-=245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
-Field 245 indicator 1: 1
-Field 245 indicator 2: 0
+=245  02$aA Statistical profile of young women /$ccompiled for the YWCA of Aotearoa-New Zealand by Nic Mason, Dianna Morris and Angie Cairncross ; with the assistance of Shell New Zealand.
+
+=245  04$aThe Discussion document of the Working Party on Fire Service Levy /$b... prepared by the Working Party on the Fire Service Levy.
 ```
 
 # List of PyMARC methods associated with a record object
