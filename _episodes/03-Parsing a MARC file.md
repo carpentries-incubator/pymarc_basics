@@ -615,17 +615,27 @@ Have a play around with a building a parser that displays data that you're inter
 > > ## Solution
 > > (a) 99628093502836
 > > 
+> >~~~
+> >	for record in reader:
+> >		for f in record.get_fields('035'):
+> >			if "39818086" in f.value():
+> >				print (record['001'].value())
+> >~~~ 
+> > 
 > > (b) 4
-> > 
-> > 
-> > 
-> > 
+> >
+> >~~~ 
+> >for record in reader:
+> > my_500s = record.get_fields('500')
+> > print (len(my_500s))
+> >~~~
 > > 
 > > (c) 10
-> > ~~~
-> > for record in reader:
-> >		if "eng" in record['008'].value():
-> > 		print (record['008'])
+> >
+> >~~~
+> >for record in reader:
+> >	if "eng" in record['008'].value():
+> >		print (record['008'])
 > >~~~
 > {: .solution}
 {: .challenge}

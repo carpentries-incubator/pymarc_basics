@@ -6,11 +6,9 @@ with open(my_marc_file, 'rb') as data:
     reader = MARCReader(data)
 
     for record in reader:
-        if "eng" in record['008'].value():
-            print (record['008'])
-
-
-        # print (len(my_500s))
+        for f in record.get_fields('035'):
+            if "39818086" in f.value():
+                print (record['001'].value())
 
 
         # quit()
