@@ -127,9 +127,6 @@ with open(my_marc_file, 'rb') as data:
     reader = MARCReader(data)
     for record in reader:
         my_record = deepcopy(record)
-
-        print (record)
-
         my_fields = my_record.get_fields('035')
         for my_field in my_fields:
             if "ilsdb" in my_field.value():
@@ -139,6 +136,25 @@ with open(my_marc_file, 'rb') as data:
         print (len(record.get_fields('035')))
         print (len(my_record.get_fields('035')))
 
+        break
+
+
+print ()
+print ("_______ Remove Subfield(s)_______")
+print ()
+
+with open(my_marc_file, 'rb') as data:
+    reader = MARCReader(data)
+    for record in reader:
+        my_record = deepcopy(record)
+        my_fields = my_record.get_fields('100')
+        for my_field in my_fields:
+            # for subfield in my_field.get_subfields('b'):
+            my_field.delete_subfield('d') 
+
+
+
+        print (record['100'])
+        print (my_record['100'])
+
         quit()
-
-

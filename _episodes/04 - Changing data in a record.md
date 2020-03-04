@@ -223,7 +223,7 @@ Number of 035 fields in my_record: 7
 {: .output}
 
 
-Lets look at how we might choose the field we want to delete. Lets delete the 035 field that contains the text "ilsdb" <code>=035  \\$a(NLNZils)6278-ilsdb</code>:
+Lets look at how we might choose the field we want to delete when there are more than one. Lets delete the 035 field that contains the text "ilsdb" <code>=035  \\$a(NLNZils)6278-ilsdb</code>:
 
 ```Python
     for record in reader:
@@ -247,6 +247,33 @@ Lets look at how we might choose the field we want to delete. Lets delete the 03
 6
 ~~~
 {. output}
+
+This is only one approach of many to tackling this task. For any given task the solution might require checking field indicators, other fields, text in subfields etc. 
+
+We can use a very similar approach to removing subfields. Lets remove the 'b' subfield from the 100 field: 
+```Python
+with open(my_marc_file, 'rb') as data:
+    reader = MARCReader(data)
+    for record in reader:
+        my_record = deepcopy(record)
+        my_fields = my_record.get_fields('100')
+        for my_field in my_fields:
+            my_field.delete_subfield('d') 
+
+        print (record['100'])
+        print (my_record['100'])
+
+        quit()
+```
+~~~
+=100  1\$aManning, Arthur,$d1918-
+=100  1\$aManning, Arthur,
+~~~
+{. output}
+
+
+
+
 
 
 
