@@ -83,7 +83,9 @@ with open(my_marc_file, 'rb') as data:
 
 ```
 
-Lets look at how we can change an existing piece of information in a record. Currently in our record we can see we have an author noted as Arthur Manning. As an exercise, lets say that Arthur informed us that he isn't infact the author, his twin sister, Arthuretta is. We need to change this record to make sure its accurate! 
+Lets look at how we can change an existing piece of information in a record. Currently in our record we can see we have an author noted as Arthur Manning. 
+
+As an exercise, lets say that Arthur informed us that he isn't in fact the author, his twin sister] - Arthuretta is. We need to change this record to make sure its accurate! 
 
 
 ```python
@@ -101,10 +103,12 @@ Lets look at how we can change an existing piece of information in a record. Cur
         quit()
 ```
 ___
-```
+```output
 =100  1\$aManning, Arthur,$d1918-
 =100  1\$aManning, Arthuretta,$d1918-
 ```
+
+Note: of course, the MARC 100 field is an authorised person - so we shouldn't really do this unless there is an authority file for this new person! 
 
 > ## Try for yourself
 >
@@ -113,6 +117,108 @@ ___
 > ><code>my_record['100']['d'] = "1920-"</code>
 > {: .solution}
 {: .challenge}
+
+
+Lets see how we can remove a field. As an exercise lets say we need to remove the 300 field: 
+
+```python
+for record in reader:
+    my_record = deepcopy(record)
+
+    # We use the get_fields() method to generate a list of 300 get_fields
+    # As there is only, we can just remove it. 
+    for my_field in my_record.get_fields('300'):
+        my_record.remove_field(my_field)
+
+    #comparing the two
+    print (record['300'])
+    print (my_record['300'])
+
+    quit()
+```
+
+This seems pretty straightforward. This is a simple case - there is only one 300 field, so we don't need to do anything else to make sure we're doing what we intended. One of the things to be aware of when we're processing in bulk is writing scripts that have unintended consequences... 
+
+> ## Unintended consequences
+>
+> What do you think would happen if we used a field that has more than one, like 035?
+> > ## Solution
+> >They would all be removed.
+> {: .solution}
+{: .challenge}
+
+One of the ways we try and mitigate unintended consequences is to build in checks to our script that help ensure that we only process things that fit our criteria. In this case the criteria is very simple, we want to delete the 300. There is actually a 'hidden' criteria that we're implicitly addressing.  
+
+
+> ## Unintended consequences - implicit requirements
+>
+> What is the implicit requirement 'hidden' in the task "remove the 300 from our record"? What would be the impact of this on our process?
+> > ## Solution
+> > There might be an assumption that there is only one 300 field. If we assumed there was only ever one 300 field, and didn't check, we might remove more fields than we expected to.  
+> {: .solution}
+{: .challenge}
+
+We have a couple of strategies to help with this problem.
+
+1. Check the standard. It may be that there is only one 300 field allowed in the record. This doesn't always help - we may find non standards compliant records!
+2. Check the corpus. It might be sensible to check the dataset we are working with to test what we find in our records. 
+3. Use some logic checks in our scripts to ensure we only remove 300 from a record where there is only one found in record. 
+
+Lets look at what #3 looks like in script. 
+
+```python
+with open(my_marc_file, 'rb') as data:
+    reader = MARCReader(data)
+    for record in reader:
+        my_record = deepcopy(record)
+
+        # We use the get_fields() method to generate a list of 300 get_fields
+        my_fields = my_record.get_fields('300')
+        
+        # We test if this list of fields contains only one member
+        if len(my_fields) == 1:
+            print ("Only one 300 field found in record ID {}. Removing it.".format(record['001'].value()))
+            for my_field in my_fields:
+                my_record.remove_field(my_field)
+        else:
+            print ("More than one 300 field found in record ID {}. Doing nothing.".format(record['001'].value()))
+
+        # comparing the two
+        print ("Number of 300 fields in record:", len(record.get_fields('300')))
+        print ("Number of 300 fields in my_record:", len(my_record.get_fields('300')))
+        print()
+
+        # testing the failing case 
+
+                # We use the get_fields() method to generate a list of 300 get_fields
+        my_fields = my_record.get_fields('035')
+        
+        # We test if this list of fields contains only one member
+        if len(my_fields) == 1:
+            print ("Only one 035 field found in record ID {}. Removing it.".format(record['001'].value()))
+            for my_field in my_fields:
+                my_record.remove_field(my_field)
+        else:
+            print ("More than one 035 field found in record ID {}. Doing nothing.".format(record['001'].value()))
+
+        # comparing the two
+        print ("Number of 035 fields in record:", len(record.get_fields('035')))
+        print ("Number of 035 fields in my_record:", len(my_record.get_fields('035')))
+
+        quit()
+```
+___
+```output
+Only one 300 field found in record ID 9962783502836. Removing it.
+Number of 300 fields in record: 1
+Number of 300 fields in my_record: 0
+
+More than one 035 field found in record ID 9962783502836. Doing nothing.
+Number of 035 fields in record: 7
+Number of 035 fields in my_record: 7
+```
+
+
 
 
 {% include links.md %}
