@@ -95,10 +95,15 @@ Lets look at how we can change an existing piece of information in a record. Cur
         my_record['100']['a'] = "Manning, Arthuretta,"
 
         #comparing the two
-        print (my_record['100'])
         print (record['100'])
+        print (my_record['100'])
 
         quit()
+```
+___
+```
+=100  1\$aManning, Arthur,$d1918-
+=100  1\$aManning, Arthuretta,$d1918-
 ```
 
 > ## Try for yourself
