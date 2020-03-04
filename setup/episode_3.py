@@ -10,9 +10,7 @@ print ()
 with open(my_marc_file, 'rb') as data:
     reader = MARCReader(data)
     for record in reader:
-        print (type(record))
-
-        quit()
+        print (record)
         break
 
 print ()

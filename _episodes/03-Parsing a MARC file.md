@@ -1,7 +1,7 @@
 ---
 title: Parsing with pymarc
-teaching: 45
-exercises: 45
+teaching: 60
+exercises: 60
 objectives:
 - How to read a marc record with pymarc
 - Finding specific fields with pymarc
@@ -210,8 +210,6 @@ We can make this a little more useful by abstracting the search id into a variab
 			print ("Success! found record with id {}.format(search_id)")
 ```
 
-What are the main differences between these two code snippets?
-
 > ## Using variables in code
 > What is main difference between these two code snippets? Why is it useful?
 > > ## Solution
@@ -269,7 +267,7 @@ Notice this difference between these two scripts. This is a really good example 
 >In programming, implicit is often used to refer to something that’s done for you by other code behind the scenes. 
 >Explicit is the manual approach to accomplishing the change you wish to have by writing out the instructions to be done explicitly.
 
-https://blog.codeship.com/what-is-the-difference-between-implicit-vs-explicit-programming/
+[https://blog.codeship.com/what-is-the-difference-between-implicit-vs-explicit-programming/](https://blog.codeship.com/what-is-the-difference-between-implicit-vs-explicit-programming/)
 
 In this case, the programmers behind the pymarc library have made some choices about which version of a title they think is the most straightforward. This is based on what the MARC standard says about a title, and how to interpret the field as a human being. 
 We don't necessarily know what those choices where, we simply trust that they made sensible one! This is an example of implicit coding. If we built our title parser, that read the field, and its associated subfields, and used some logic to turn that data into a single string like <code>record.title()</code> does, we would be explicitly coding this solution. 
@@ -341,7 +339,7 @@ ____
 	99628163502836 =740  01$aNew Zealanders at home.
 ```
 
-We can use the same loop/iterator approach to process any field that has subfields. Lets see what that looks likes:
+We can use the same loop/iterator approach to process any field that has subfields. Lets see what that looks like:
 
 ```Python
 	for record in reader:
@@ -382,7 +380,22 @@ for record in reader:
 
 Before you consider the output of this code, consider the structure of the code itself. 
 
-Can you see any coding conventions being used?  What are they? Why are they being used? 
+> ## Coding conventions 
+> Can you see any coding conventions being used?  What are they? Why are they being used? 
+> > ## Solution
+> > In coding there are some strong rules about things we can/can't do. These are important because if we don't follow these rules our code doesn't work. This includes things like not starting variable names with numbers or trying to use reserved terms like <code>=</code> in ways that the complier can't process. 
+> >
+> > There are also coding conventions. These are less strict rules, but equally important. These are usually followed to aid readability, portability and shareability of our code. Pep 8 is a useful start for learning about common conventions [https://www.python.org/dev/peps/pep-0008/](https://www.python.org/dev/peps/pep-0008/)
+> > 
+> > Conventions can also be quite personal, or agreed by a coding group. 
+> >
+> > In this script when we're making 'iterables' (things that contain other things, like lists or dictionaries) we always pluralise the variable name e.g. <code>for thing in <b>things</b></code>. This helps us to know the data type we are using. 
+> >  
+> > In this script we're adding the text "my_" to any item we're creating. Its a convention thats used to show that the item being made/used "belongs" to a particular method. Its not something we need to pay particular attention to, but it is useful to notice it in code as we start to explore Python scripts.  
+> > 
+> {: .solution}
+{: .challenge}
+
 ___
 ```
 =500  \\$aEric Baume was a New Zealander.
@@ -447,9 +460,9 @@ Larger than life :
 the story of Eric Baume /
 by Arthur Manning. 
 ```
-We need to specify the field codes, or subfield codes for both of these methods. The list of subfield codes was made by refering to the MARC data page for the 245 field https://www.loc.gov/marc/bibliographic/concise/bd245.html
+We need to specify the field codes, or subfield codes for both of these methods. The list of subfield codes was made by referring to the MARC data page for the 245 field [https://www.loc.gov/marc/bibliographic/concise/bd245.html](https://www.loc.gov/marc/bibliographic/concise/bd245.html)
 
-There one more trick to pymarc that helps us to parse a MARC record. In a previous episode we looked at the sturcture of MARC files, and noted where we can see the two indicators for any field. We can get to this data directly via pymarc: 
+There one more trick to pymarc that helps us to parse a MARC record. In a previous episode we looked at the structure of MARC files, and noted where we can see the two indicators for any field. We can get to this data directly via pymarc: 
 
 ```Python
 for record in reader:
@@ -594,13 +607,28 @@ MMS ID: 9962783502836
 ```
 Have a play around with a building a parser that displays data that you're interested in, using the above as a template. 
 
-**Experiments!**
 
-See if you can find any records with the OCLC identifier "39818086"
-Can you count how many records have more than one 500 fields?
-#todo - what is the main language indicator!?
-Can you find out how many records describe an item thats written in English? (hint: We can look in the <code>record.leader</code> in position )
-
+> ## Experiments!
+> What is the 001 identifier for the record with the OCLC identifier 39818086?
+> How many records have more than one 500 fields?
+> how many records describe an item with English as the primary language? (hint: We can look in the <code>record['008']</code> field to find out the primary language)
+> > ## Solution
+> > (a) 99628093502836
+> > 
+> > (b) 4
+> > 
+> > 
+> > 
+> > 
+> > 
+> > (c) 10
+> > ~~~
+> > for record in reader:
+> >		if "eng" in record['008'].value():
+> > 		print (record['008'])
+> >~~~
+> {: .solution}
+{: .challenge}
 
 
 
