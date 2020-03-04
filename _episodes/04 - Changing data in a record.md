@@ -223,6 +223,6 @@ Number of 035 fields in my_record: 7
 {: .output}
 
 
-
+Lets look at how we might choose the field we want to delete.
 
 {% include links.md %}
