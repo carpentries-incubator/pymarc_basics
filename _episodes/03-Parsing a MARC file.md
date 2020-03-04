@@ -30,6 +30,8 @@ with open(my_marc_file, 'rb') as data:
     for record in reader:
         print (record)
 ```
+{: .output}
+
 
 We can used the data object created by pymarc to only process fields we're interested in. We can do that by telling python the field name/label we're interested in e.g. <code>print (record['245'])</code> In this piece of code we're asking pymarc to print any field in our record object that has the label/name <code>245</code>  
 
@@ -53,6 +55,8 @@ for record in reader:
 =245  04$aThe Discussion document of the Working Party on Fire Service Levy /$b... prepared by the Working Party on the Fire Service Levy.
 =245  00$a1991 New Zealand census of population and dwellings.$pNew Zealanders at home.
 ```
+{: .output}
+
 
 
 > ## Understanding Python data types and data objects
@@ -91,6 +95,8 @@ ___
 None
 
 ```
+{: .output}
+
 
 Notice it doesn't give you an error or otherwise strongly signal that it did not find the key you're interested in the data object. Its useful to know this happens if we use an key that doesn't exist. If you see the return <code>None</code> in your scripts where you are expecting an actual value, double check the key you've used. Common errors would be typos (e.g. <code>record['254']</code> instead of <code>record['245']</code>) or using a number instead of a string (e.g. <code>record[245]</code> instead of <code>record['245']</code>).
 
@@ -124,6 +130,8 @@ Subfield 'a': Larger than life :
 Subfield 'b': the story of Eric Baume /
 Subfield 'c': by Arthur Manning.
 ```
+{: .output}
+
 
 > ## Nuance of punctuation use in MARC
 >
@@ -192,6 +200,8 @@ Larger than life :
 Larger than life : the story of Eric Baume /
 <class 'str'>
 ```
+{: .output}
+
 
 We can use a similar approach to find a particular record. Lets say we're looking for the record with the 001 identifier of <code>99628153502836</code>. We can loop through the records in our <code>pymarc.reader</code> object and look for a match:
 
@@ -244,6 +254,8 @@ _____
 	=245  02$aA Statistical profile of young women /$ccompiled for the YWCA of Aotearoa-New Zealand by Nic Mason, Dianna Morris and Angie Cairncross ; with the assistance of Shell New Zealand.
 	=245  00$a1991 New Zealand census of population and dwellings.$pNew Zealanders at home.
 ```
+{: .output}
+
 
 Lets have a look at what happens if we use the <code>.title()</code> method as our string that we're searching:
 
@@ -261,7 +273,9 @@ These fortunate isles : some Russian perceptions of New Zealand in the nineteent
 
 =245  00$a1991 New Zealand census of population and dwellings.$pNew Zealanders at home.
 1991 New Zealand census of population and dwellings.
-````
+```
+{: .output}
+
 Notice this difference between these two scripts. This is a really good example of a paradigm we find in coding, explicit vs implicit. 
 
 >In programming, implicit is often used to refer to something that’s done for you by other code behind the scenes. 
@@ -338,6 +352,8 @@ ____
 	99628163502836 =740  01$aCensus 1991, New Zealanders at home.
 	99628163502836 =740  01$aNew Zealanders at home.
 ```
+{: .output}
+
 
 We can use the same loop/iterator approach to process any field that has subfields. Lets see what that looks like:
 
@@ -362,6 +378,8 @@ ____
 ('a', 'PN5596.B3')
 ...
 ```
+{: .output}
+
 For brevity we've only shown the first few fields. 
 
 # Magic PyMARC methods... 
@@ -421,6 +439,8 @@ ___
 =500  \\$aIncludes advertising.
 =500  \\$a"Catalogue number 02.226.0091"--T.p. verso.
 ```
+{: .output}
+
 
 We're not limited to one field in this method:
 
@@ -440,6 +460,8 @@ ____
 =500  \\$aCover title.
 ...
 ```
+{: .output}
+
 
 
 Lets unpick a field that contains subfields:
@@ -460,6 +482,8 @@ Larger than life :
 the story of Eric Baume /
 by Arthur Manning. 
 ```
+{: .output}
+
 We need to specify the field codes, or subfield codes for both of these methods. The list of subfield codes was made by referring to the MARC data page for the 245 field [https://www.loc.gov/marc/bibliographic/concise/bd245.html](https://www.loc.gov/marc/bibliographic/concise/bd245.html)
 
 There one more trick to pymarc that helps us to parse a MARC record. In a previous episode we looked at the structure of MARC files, and noted where we can see the two indicators for any field. We can get to this data directly via pymarc: 
@@ -477,6 +501,7 @@ _____
 Field 245 indicator 1: 1
 Field 245 indicator 2: 0
 ```
+{: .output}
 
 We can use use this as another searching tool:
 
@@ -488,11 +513,13 @@ for record in reader:
 		print ()
 ```
 _____
-```output
+```
 =245  02$aA Statistical profile of young women /$ccompiled for the YWCA of Aotearoa-New Zealand by Nic Mason, Dianna Morris and Angie Cairncross ; with the assistance of Shell New Zealand.
 
 =245  04$aThe Discussion document of the Working Party on Fire Service Levy /$b... prepared by the Working Party on the Fire Service Levy.
 ```
+{: .output}
+
 
 # List of PyMARC methods associated with a record object
 
@@ -563,7 +590,7 @@ We can arrange some of the approaches we've looked at into a single script:
         quit()
 ```
 ____
-```output
+```
 MMS ID: 9962783502836
 	Tag #: 001
 
@@ -605,6 +632,8 @@ MMS ID: 9962783502836
 		 b M3
 	...
 ```
+{: .output}
+
 Have a play around with a building a parser that displays data that you're interested in, using the above as a template. 
 
 

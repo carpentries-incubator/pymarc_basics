@@ -51,7 +51,7 @@ print (id(a))
 print (id(b))
 ```
 ____
-```output
+```
 b = ['Hello']
 1983706174528
 1983706174528
@@ -60,6 +60,7 @@ b = ['World!']
 1983706174528
 1983706174528
 ```
+{: .output}
 
 Your id number will be different to the one shown here, they are assigned by python at run time.   
 
