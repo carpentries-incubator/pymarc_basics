@@ -208,7 +208,7 @@ with open(my_marc_file, 'rb') as data:
         quit()
 ```
 ___
-```
+~~~
 Only one 300 field found in record ID 9962783502836. Removing it.
 Number of 300 fields in record: 1
 Number of 300 fields in my_record: 0
@@ -216,8 +216,8 @@ Number of 300 fields in my_record: 0
 More than one 035 field found in record ID 9962783502836. Doing nothing.
 Number of 035 fields in record: 7
 Number of 035 fields in my_record: 7
-{: .output}
-```
+
+~~~{: .output}
 
 
 
