@@ -217,7 +217,8 @@ More than one 035 field found in record ID 9962783502836. Doing nothing.
 Number of 035 fields in record: 7
 Number of 035 fields in my_record: 7
 
-~~~{: .output}
+~~~
+{: .output}
 
 
 
