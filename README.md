@@ -34,3 +34,7 @@ A list of contributors to the lesson can be found in [AUTHORS](AUTHORS)
 ## Citation
 
 To cite this lesson, please consult with [CITATION](CITATION)
+
+## URL for lesson plan
+
+[https://jaygattusonlnz.github.io/pymarc_basics/index.html](https://jaygattusonlnz.github.io/pymarc_basics/index.html )
