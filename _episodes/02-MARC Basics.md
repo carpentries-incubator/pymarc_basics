@@ -43,7 +43,7 @@ for record in reader:
 ```
 
 You should see a marc record, line-by-line, in the terminal window:
-```
+```output
 =LDR  00912cam a2200301 a 4500
 =001  9962783502836
 =003  Nz
@@ -77,7 +77,7 @@ Notice the first piece of data starts with an <code>=</code>. The first one we s
 
 We'll get into the details of some of the control fields later on. For now lets focus on one of the "standard" fields and take a look at how its made up. Lets look at the 245 field, the "title statement" [http://www.loc.gov/marc/bibliographic/bd245.html](http://www.loc.gov/marc/bibliographic/bd245.html)
 
-```
+```output
 =245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
 ```
 
@@ -85,13 +85,13 @@ We've established the <code>=245</code> is telling us the field name. We can see
 
 Following the two indicators, we can see some data thats separated by the <code>$</code> character:
 
-```
+```output
 $aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
 ```
 
 The <code>$</code> is always followed by another character, the subfield label, and then the value of the subfield. In this instance we can see 3 subfields; a, b, and c:
 
-```
+```output
 a| Larger than life :
 b| the story of Eric Baume /
 c| by Arthur Manning.

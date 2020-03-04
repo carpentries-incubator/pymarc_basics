@@ -488,7 +488,7 @@ for record in reader:
 		print ()
 ```
 _____
-```
+```output
 =245  02$aA Statistical profile of young women /$ccompiled for the YWCA of Aotearoa-New Zealand by Nic Mason, Dianna Morris and Angie Cairncross ; with the assistance of Shell New Zealand.
 
 =245  04$aThe Discussion document of the Working Party on Fire Service Levy /$b... prepared by the Working Party on the Fire Service Levy.
@@ -563,7 +563,7 @@ We can arrange some of the approaches we've looked at into a single script:
         quit()
 ```
 ____
-```
+```output
 MMS ID: 9962783502836
 	Tag #: 001
 

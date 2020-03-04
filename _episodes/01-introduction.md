@@ -98,7 +98,7 @@ with open(my_marc_file, 'rb') as data:
 
 
 We'll cover off this script in the next episode. For now you want to see a list of titles that are included in our test set of MARC records:
-```
+```output
 Larger than life : the story of Eric Baume /
 Difficult country : an informal history of Murchison /
 These fortunate isles : some Russian perceptions of New Zealand in the nineteenth and early twentieth centuries /
