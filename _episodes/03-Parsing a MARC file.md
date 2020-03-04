@@ -20,7 +20,7 @@ Start a new file in your IDE <code>episode_3.py</code>
 Set up the basic record reader like we did in episode 2:
 
 
-```Python
+```python
 from pymarc import MARCReader
 
 my_marc_file = "NLNZ_example_marc.marc"
@@ -35,7 +35,7 @@ We can used the data object created by pymarc to only process fields we're inter
 
 If we add this piece of code to our basic file parser we can see all the title statements for our test set:
 
-```Python
+```python
 for record in reader:
 	print (record['245'])
 ```
@@ -81,7 +81,7 @@ Behind the scenes when this script is run, python looks at the data object that 
 See what happens if you give it a key that isn't included in the data object:
 
 
-```Python
+```python
 for record in reader:
 	print (record['this_key_doesnt_exist'])
 	quit()
@@ -108,7 +108,7 @@ In this case, returns <code>None</code>, which itself is an important concept in
 
 We can use the same 'key' method to get to any subfields we might have:
 
-```Python
+```python
 for record in reader:
 	print ("Subfield 'a':", record['245']['a'])
 	print ("Subfield 'b':", record['245']['b'])
@@ -158,7 +158,7 @@ PyMARC gives us some convenient keywords to help us access key bits of data. One
 
 Lets have a look a one record and what these various methods produce:
 
-```Python
+```python
 for record in reader:
     print (type(record))
     print ()
@@ -195,7 +195,7 @@ Larger than life : the story of Eric Baume /
 
 We can use a similar approach to find a particular record. Lets say we're looking for the record with the 001 identifier of <code>99628153502836</code>. We can loop through the records in our <code>pymarc.reader</code> object and look for a match:
 
-```Python
+```python
 	for record in reader:
 		if record['001'].value() == str(99628153502836):
 			print ("Success! found record with id 99628153502836")
@@ -203,7 +203,7 @@ We can use a similar approach to find a particular record. Lets say we're lookin
 
 We can make this a little more useful by abstracting the search id into a variable:
 
-```Python
+```python
 	search_id = 99628153502836
 	for record in reader:
 		if record['001'].value() == str(search_id):
@@ -234,7 +234,7 @@ We can make this a little more useful by abstracting the search id into a variab
 
 Lets make our search a little more interesting. Lets say we're interested in in any record that contains the string "New Zealand" in the <code>245</code> field
 
-```Python
+```python
     if "New Zealand" in record['245'].value():
         print (record['245'])
 ```
@@ -247,7 +247,7 @@ _____
 
 Lets have a look at what happens if we use the <code>.title()</code> method as our string that we're searching:
 
-```Python
+```python
 for record in reader:
     if "New Zealand" in record.title():
         print (record['245'])
@@ -276,7 +276,7 @@ ____
 
 What about if we want any record that contains the string "New Zealand"? How might we adapt the code? 
 
-```Python
+```python
 	if "New Zealand" in str(record):
 		print (record) 
 		print()
@@ -287,7 +287,7 @@ This could result in an overwhelming amount of data if we're not careful. Lets h
 What happens if we  ask to see any MARC field that contains our search string. We can do this by adding another loop. 
 We also might want to think about how we associate each match with a particular record. One way of doing this would be to print the record ID as well as the matching field:
 
-```Python
+```python
     if "New Zealand" in str(record):
         for field in record:
             if "New Zealand" in field.value():
@@ -341,7 +341,7 @@ ____
 
 We can use the same loop/iterator approach to process any field that has subfields. Lets see what that looks like:
 
-```Python
+```python
 	for record in reader:
 		for field in record:
 			for subfield in field:
@@ -371,7 +371,7 @@ Pymarc helps us out by providing a few useful methods that allow us to get field
 Firstly, <code>get_fields()</code>:
 
 
-```Python
+```python
 for record in reader:
 	my_500s = record.get_fields('500')
 	for my_500 in my_500s:
@@ -424,7 +424,7 @@ ___
 
 We're not limited to one field in this method:
 
-```Python
+```python
 for record in reader:
 	my_500s = record.get_fields('500', '700')
 	for my_500 in my_500s:
@@ -444,7 +444,7 @@ ____
 
 Lets unpick a field that contains subfields:
 
-```Python
+```python
 for record in reader:
     my_245s = record.get_fields('245')
     for my_245 in my_245s:
@@ -464,7 +464,7 @@ We need to specify the field codes, or subfield codes for both of these methods.
 
 There one more trick to pymarc that helps us to parse a MARC record. In a previous episode we looked at the structure of MARC files, and noted where we can see the two indicators for any field. We can get to this data directly via pymarc: 
 
-```Python
+```python
 for record in reader:
 	print (record['245'])
 	print ("Field 245 indicator 1: {}".format(record['245'].indicator1))
@@ -480,7 +480,7 @@ Field 245 indicator 2: 0
 
 We can use use this as another searching tool:
 
-```Python
+```python
 for record in reader:
 	ind_2 =  record['245'].indicator2
 	if ind_2 != '0':
@@ -498,7 +498,7 @@ Field 245 indicator 2: 0
 
 The pymarc record object has more useful data "shortcuts" that we won't go into the specifics of, but are useful to know. These are all pre-built methods that get you to key data in a record, assuming (a) its been entered in the record and (b) its been entered in a way the pymarc developers expected to find it.  
 
-```Python
+```python
 record.author()
 record.isbn()
 record.issn()
@@ -521,7 +521,7 @@ If you have time, see what happens when you use these "shortcuts" to access bits
 
 Try looking at record and matching the data item you see, with the original record:
 
-```Python
+```python
 for record in reader:
 	print (record)
 	print ("\n______________________________\n\n")
@@ -534,9 +534,9 @@ for record in reader:
 
 # Building a basic parser!
 
-We could pull some of the approaches we looked at into a single script:
+We can arrange some of the approaches we've looked at into a single script:
 
-```Python
+```python
     for record in reader:
         print ("MMS ID:", record['001'].value())
         for my_field in record:
