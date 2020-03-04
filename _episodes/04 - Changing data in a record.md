@@ -103,10 +103,11 @@ As an exercise, lets say that Arthur informed us that he isn't in fact the autho
         quit()
 ```
 ___
-```output
+```
 =100  1\$aManning, Arthur,$d1918-
 =100  1\$aManning, Arthuretta,$d1918-
 ```
+{: .output}
 
 Note: of course, the MARC 100 field is an authorised person - so we shouldn't really do this unless there is an authority file for this new person! 
 
