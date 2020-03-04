@@ -120,6 +120,7 @@ Note: of course, the MARC 100 field is an authorised person - so we shouldn't re
 > {: .solution}
 {: .challenge}
 
+# Removing information from a record
 
 Lets see how we can remove a field. As an exercise lets say we need to remove the 300 field: 
 
@@ -242,6 +243,8 @@ Lets look at how we might choose the field we want to delete when there are more
 
     quit()
 ```
+____
+
 ~~~
 7
 6
@@ -251,6 +254,7 @@ Lets look at how we might choose the field we want to delete when there are more
 This is only one approach of many to tackling this task. For any given task the solution might require checking field indicators, other fields, text in subfields etc. 
 
 We can use a very similar approach to removing subfields. Lets remove the 'b' subfield from the 100 field: 
+
 ```Python
 with open(my_marc_file, 'rb') as data:
     reader = MARCReader(data)
@@ -271,10 +275,88 @@ with open(my_marc_file, 'rb') as data:
 ~~~
 {. output}
 
+# Adding information to a record
 
+Lets look at how we can add a new field to a record. To do this we, we need to make a pymarc field object, and add it to the record. There are two different types of field in pymarc, a control field, and a non control field.   
 
+We can use the pymarc documentation to see how we can make a field data object:
 
+```Python
+from pymarc import Field
 
+print (help(Field))
+```
+
+~~~
+Help on class Field in module pymarc.field:
+
+class Field(builtins.object)
+ |  Field(tag, indicators=None, subfields=None, data='')
+ |  
+ |  Field() pass in the field tag, indicators and subfields for the tag.
+ |  
+ |      field = Field(
+ |          tag = '245',
+ |          indicators = ['0','1'],
+ |          subfields = [
+ |              'a', 'The pragmatic programmer : ',
+ |              'b', 'from journeyman to master /',
+ |              'c', 'Andrew Hunt, David Thomas.',
+ |          ])
+ |  
+ |  If you want to create a control field, don't pass in the indicators
+ |  and use a data parameter rather than a subfields parameter:
+ |  
+ |      field = Field(tag='001', data='fol05731351')
+ ...
+ ~~~
+ {: .output} 
+
+Ok, so it looks like we need to pass the <code>Field()</code> method the tag we want to use, the indicators, and the subfield data. Lets have go!
+
+```Python 
+from pymarc import Field 
+
+with open(my_marc_file, 'rb') as data:
+    reader = MARCReader(data)
+    for record in reader:
+        my_record = deepcopy(record)
+        ### making the new 245 field
+        my_new_245_field = Field(
+
+                            tag = '245', 
+
+                            indicators = ['0','1'],
+
+                            subfields = [
+                                            'a', 'The pragmatic programmer : ',
+                                            'b', 'from journeyman to master /',
+                                            'c', 'Andrew Hunt, David Thomas.',
+                                        ]
+                            ) 
+        ### adding the new field
+        my_record.add_field(my_new_245_field)
+
+        ### showing the diffence
+        for original_245 in record.get_fields('245'):
+            print (original_245)
+     
+        print ("______")
+
+        for my_record_245 in my_record.get_fields('245'):
+            print (my_record_245)
+
+        quit()
+```
+
+~~~
+
+=245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
+______
+=245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
+=245  01$aThe pragmatic programmer : $bfrom journeyman to master /$cAndrew Hunt, David Thomas.
+~~~
+{: .output}
 
 
 

@@ -149,12 +149,48 @@ with open(my_marc_file, 'rb') as data:
         my_record = deepcopy(record)
         my_fields = my_record.get_fields('100')
         for my_field in my_fields:
-            # for subfield in my_field.get_subfields('b'):
             my_field.delete_subfield('d') 
-
-
 
         print (record['100'])
         print (my_record['100'])
+
+        break
+
+
+print ()
+print ("_______ Add field _______")
+print ()
+
+
+from pymarc import Field 
+
+with open(my_marc_file, 'rb') as data:
+    reader = MARCReader(data)
+    for record in reader:
+        my_record = deepcopy(record)
+        ### making the new 245 field
+        my_new_245_field = Field(
+
+                            tag = '245', 
+
+                            indicators = ['0','1'],
+
+                            subfields = [
+                                            'a', 'The pragmatic programmer : ',
+                                            'b', 'from journeyman to master /',
+                                            'c', 'Andrew Hunt, David Thomas.',
+                                        ]
+                            ) 
+        ### adding the new field
+        my_record.add_field(my_new_245_field)
+
+        ### showing the diffence
+        for original_245 in record.get_fields('245'):
+            print (original_245)
+     
+        print ("______")
+
+        for my_record_245 in my_record.get_fields('245'):
+            print (my_record_245)
 
         quit()
