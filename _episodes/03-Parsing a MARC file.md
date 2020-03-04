@@ -610,7 +610,9 @@ Have a play around with a building a parser that displays data that you're inter
 
 > ## Experiments!
 > What is the 001 identifier for the record with the OCLC identifier 39818086?
+>
 > How many records have more than one 500 fields?
+>
 > how many records describe an item with English as the primary language? (hint: We can look in the <code>record['008']</code> field to find out the primary language)
 > > ## Solution
 > > (a) 99628093502836
