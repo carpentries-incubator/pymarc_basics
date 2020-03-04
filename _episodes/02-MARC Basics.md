@@ -43,7 +43,7 @@ for record in reader:
 ```
 
 You should see a marc record, line-by-line, in the terminal window:
-```output
+```
 =LDR  00912cam a2200301 a 4500
 =001  9962783502836
 =003  Nz
@@ -69,6 +69,7 @@ You should see a marc record, line-by-line, in the terminal window:
 =650  \0$aJournalists$zAustralia$xBiography.
 =650  \0$aAuthors, New Zealand$y20th century$xBiography. 
 ```
+{: .output}
 
 # Understanding MARC field in PyMARC 
 Its useful to understand the structure of the data object we can see, and how it relates to the MARC format. 
@@ -77,25 +78,29 @@ Notice the first piece of data starts with an <code>=</code>. The first one we s
 
 We'll get into the details of some of the control fields later on. For now lets focus on one of the "standard" fields and take a look at how its made up. Lets look at the 245 field, the "title statement" [http://www.loc.gov/marc/bibliographic/bd245.html](http://www.loc.gov/marc/bibliographic/bd245.html)
 
-```output
+```
 =245  10$aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
 ```
+{: .output}
 
 We've established the <code>=245</code> is telling us the field name. We can see a couple of spaces, and then the digits <code>1</code> and <code>0</code>. These are the two 'indicators' for the field. Sometimes they're empty or blank, sometimes they're unused (and sometimes encountered as a <code>slash</code>) character. Sometimes they're set to a value like we can see here. We'll look at how to parse this information in a moment. 
 
 Following the two indicators, we can see some data thats separated by the <code>$</code> character:
 
-```output
+```
 $aLarger than life :$bthe story of Eric Baume /$cby Arthur Manning.
 ```
+{: .output}
 
 The <code>$</code> is always followed by another character, the subfield label, and then the value of the subfield. In this instance we can see 3 subfields; a, b, and c:
 
-```output
+```
 a| Larger than life :
 b| the story of Eric Baume /
 c| by Arthur Manning.
 ```
+{: .output}
+
 
 Spend a moment looking at the MARC specs for this field, and the data we have in this record. 
 
