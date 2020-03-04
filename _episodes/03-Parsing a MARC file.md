@@ -628,8 +628,8 @@ Have a play around with a building a parser that displays data that you're inter
 > >
 > >~~~ 
 > >for record in reader:
-> > my_500s = record.get_fields('500')
-> > print (len(my_500s))
+> >		my_500s = record.get_fields('500')
+> >		print (len(my_500s))
 > >~~~
 > > 
 > > (c) 10
