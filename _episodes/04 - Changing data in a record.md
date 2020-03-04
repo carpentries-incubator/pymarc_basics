@@ -160,7 +160,7 @@ One of the ways we try and mitigate unintended consequences is to build in check
 > {: .solution}
 {: .challenge}
 
-We have a couple of strategies to help with this problem.
+We have a few strategies to help with this problem.
 
 1. Check the standard. It may be that there is only one 300 field allowed in the record. This doesn't always help - we may find non standards compliant records!
 2. Check the corpus. It might be sensible to check the dataset we are working with to test what we find in our records. 
@@ -223,6 +223,32 @@ Number of 035 fields in my_record: 7
 {: .output}
 
 
-Lets look at how we might choose the field we want to delete.
+Lets look at how we might choose the field we want to delete. Lets delete the 035 field that contains the text "ilsdb" <code>=035  \\$a(NLNZils)6278-ilsdb</code>:
+
+```Python
+    for record in reader:
+    my_record = deepcopy(record)
+
+    print (record)
+
+    my_fields = my_record.get_fields('035')
+    for my_field in my_fields:
+        if "ilsdb" in my_field.value():
+            my_record.remove_field(my_field)
+
+
+    print (len(record.get_fields('035')))
+    print (len(my_record.get_fields('035')))
+
+    quit()
+```
+~~~
+7
+6
+~~~
+{. output}
+
+
+
 
 {% include links.md %}

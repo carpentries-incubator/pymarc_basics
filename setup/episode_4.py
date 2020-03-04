@@ -75,7 +75,7 @@ with open(my_marc_file, 'rb') as data:
         break
 
 print ()
-print ("_______ Remove Field(s) with logic_______")
+print ("_______ Remove Field(s) with basic checks_______")
 print ()
 
 with open(my_marc_file, 'rb') as data:
@@ -116,4 +116,29 @@ with open(my_marc_file, 'rb') as data:
         print ("Number of 035 fields in record:", len(record.get_fields('035')))
         print ("Number of 035 fields in my_record:", len(my_record.get_fields('035')))
 
+        break 
+
+
+print ()
+print ("_______ Remove Field(s) with logic_______")
+print ()
+
+with open(my_marc_file, 'rb') as data:
+    reader = MARCReader(data)
+    for record in reader:
+        my_record = deepcopy(record)
+
+        print (record)
+
+        my_fields = my_record.get_fields('035')
+        for my_field in my_fields:
+            if "ilsdb" in my_field.value():
+                my_record.remove_field(my_field)
+
+
+        print (len(record.get_fields('035')))
+        print (len(my_record.get_fields('035')))
+
         quit()
+
+

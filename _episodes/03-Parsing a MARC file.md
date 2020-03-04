@@ -30,7 +30,6 @@ with open(my_marc_file, 'rb') as data:
     for record in reader:
         print (record)
 ```
-{: .output}
 
 
 We can used the data object created by pymarc to only process fields we're interested in. We can do that by telling python the field name/label we're interested in e.g. <code>print (record['245'])</code> In this piece of code we're asking pymarc to print any field in our record object that has the label/name <code>245</code>  
