@@ -51,7 +51,7 @@ print (id(a))
 print (id(b))
 ```
 ____
-```
+```output
 b = ['Hello']
 1983706174528
 1983706174528
@@ -208,7 +208,7 @@ with open(my_marc_file, 'rb') as data:
         quit()
 ```
 ___
-```output
+```Output
 Only one 300 field found in record ID 9962783502836. Removing it.
 Number of 300 fields in record: 1
 Number of 300 fields in my_record: 0
