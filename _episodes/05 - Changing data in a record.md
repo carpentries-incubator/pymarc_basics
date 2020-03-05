@@ -19,7 +19,7 @@ Start a new file in your IDE <code>episode_5.py</code>
 
 Set up the basic record reader like we have previously, this time we're only going to process one record: 
 
-```Python
+```python
 from pymarc import MARCReader
 my_marc_file = "NLNZ_example_marc.marc"
 
@@ -33,7 +33,7 @@ Let set up a parser that will allows us to manipulate a single record. We alread
 
 As we know we will be changing a record in some way we'll probably want to copy the record to a new object, and make our changes on that. Python has a particular trait around copying objects that we need to be aware of. If we use the basis assignation via an equals sign - <code>a = b</code> behind the scenes python essentially make a new pointer to original object. This means that <code>a</code> is not a copy of <code>b</code>, it IS <code>b</code>! Any changes to <code>b</code> are also in <code>a</code>. We can check this by asking python to tell us the internal identifier it uses to track the various objects: 
 
-```Python
+```python
 a = ["Hello"]
 # assigning b to be a
 b = a
@@ -66,7 +66,7 @@ Your id number will be different to the one shown here, they are assigned by pyt
 
 To make sure we make a new record that we can change without making changes to the original record we can use the python <code>deepcopy()</code> method to solve the problem: 
 
-```Python
+```python
 from pymarc import MARCReader
 from copy import deepcopy
 
@@ -89,7 +89,7 @@ Lets look at how we can change an existing piece of information in a record. Cur
 As an exercise, lets say that Arthur informed us that he isn't in fact the author, his twin sister - Arthuretta is. We need to change this record to make sure its accurate! 
 
 
-```Python
+```python
     for record in reader:
         my_record = deepcopy(record)
 
@@ -124,7 +124,7 @@ Note: of course, the MARC 100 field is an authorised person - so we shouldn't re
 
 Lets see how we can remove a field. As an exercise lets say we need to remove the 300 field: 
 
-```Python
+```python
 for record in reader:
     my_record = deepcopy(record)
 
@@ -169,7 +169,7 @@ We have a few strategies to help with this problem.
 
 Lets look at what #3 looks like in script. 
 
-```Python
+```python
 with open(my_marc_file, 'rb') as data:
     reader = MARCReader(data)
     for record in reader:
@@ -241,7 +241,7 @@ We're starting with these 035 fields - we can see that only one field has "ilsdb
 ~~~
 {: .output} 
 
-```Python
+```python
 for record in reader:
     my_record = deepcopy(record)
 
@@ -282,7 +282,7 @@ This is only one approach of many to tackling this task. For any given task the 
 
 We can use a very similar approach to removing subfields. Lets remove the 'b' subfield from the 100 field: 
 
-```Python
+```python
 with open(my_marc_file, 'rb') as data:
     reader = MARCReader(data)
     for record in reader:
@@ -308,7 +308,7 @@ Lets look at how we can add a new field to a record. To do this we, we need to m
 
 We can use the pymarc documentation to see how we can make a field data object:
 
-```Python
+```python
 from pymarc import Field
 
 print (help(Field))
@@ -342,7 +342,7 @@ class Field(builtins.object)
 Ok, so it looks like we need to pass the <code>Field()</code> method the tag we want to use, the indicators, and the subfield data. Lets have go!
 
 
-```Python 
+```python 
 from pymarc import Field 
 
 with open(my_marc_file, 'rb') as data:
@@ -388,7 +388,7 @@ ______
 
 Lets have a look at the whole new record and double check things.
 
-```Python
+```python
 print (my_record)
 ```
 
@@ -435,7 +435,7 @@ Notice where the new field is. The <code>add_field()</code> method has added it 
 
 If we want to ensure our new field is added in the correct numerical sort position we use the <code>add_ordered_field()</code> method:
 
-```Python
+```python
 for record in reader:
     my_record = deepcopy(record)
     ### making the new 245 field
@@ -461,7 +461,7 @@ While we're thinking about validation / what we expect our records to look like,
 
 Lets do one last task, and make a new record. 
 
-```Python
+```python
 from pymarc import Record
 
 my_new_record = Record()
@@ -509,4 +509,4 @@ Its that straight forward! We've made a new empty record. All it contains is a m
 > {: .solution}
 {: .challenge}
 
-{% include links.md %}
+{% include links.md %} 
