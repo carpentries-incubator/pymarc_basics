@@ -1,7 +1,7 @@
 ---
 title: Changing a record with PyMARC
 teaching: 30
-exercises: 30
+exercises: 60
 objectives:
 - How to change some information in a record
 - How to delete some information from a record
