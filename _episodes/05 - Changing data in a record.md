@@ -226,9 +226,9 @@ Number of 035 fields in my_record: 7
 
 Lets look at how we might choose the field we want to delete when there are more than one. Lets delete the 035 field that contains the text "ilsdb". 
 
-We can do that by testing for the presence of that string in our 035 fields. 
+We can do that by testing for the presence of the string "ilsdb" in our various 035 fields. 
 
-We're starting with these 035 fields: 
+We're starting with these 035 fields - we can see that only one field has "ilsdb" in it, so its a safe test to use in this case: 
 
 ~~~
 =035  \\$z4260
