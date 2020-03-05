@@ -169,10 +169,6 @@ with open(my_marc_file, 'rb') as data:
     for record in reader:
         my_record = deepcopy(record)
         ### making the new 245 field
-
-        print (record)
-
-        quit()
         my_new_245_field = Field(
 
                             tag = '245', 
@@ -210,5 +206,30 @@ print ()
 from pymarc import Record
 
 my_new_record = Record()
+
+print (my_new_record)
+
+
+
+print ()
+print ("_______ making a new record populated_______")
+print ()
+
+field_template = Field(tag='', indicators=['',''], subfields=['',''])
+
+from pymarc import Record
+
+my_new_record = Record()
+
+my_new_fields = []
+
+my_new_fields.append(Field('003', data='Nz'))
+my_new_fields.append(Field(tag='100', indicators=['1',''], subfields=['a','Gattuso, Jay,', 'd', 'd1978-']))
+my_new_fields.append(Field(tag='245', indicators=['1','0'], subfields=['a','Goats. Are they the best animals? :', 'b', 'What about Cats!? /' ]))
+my_new_fields.append(Field(tag='650', indicators=['','0'], subfields=['a','Goats', 'b', 'Competitive Pet Keeping']))
+my_new_fields.append(Field(tag='650', indicators=['','0'], subfields=['a','Cats', 'b', 'Competitive Pet Keeping']))
+
+for my_new_field in my_new_fields:
+    my_new_record.add_ordered_field(my_new_field)
 
 print (my_new_record)
