@@ -507,6 +507,16 @@ Its that straight forward! We've made a new empty record. All it contains is a m
 > >print (my_new_record)
 > >~~~
 > >{: .language-python}
+> >
+> >~~~
+> >=LDR            22        4500
+> >=003  Nz
+> >=100  1$aGattuso, Jay,$dd1978-
+> >=245  10$aGoats. Are they the best animals? :$bWhat about Cats!? /
+> >=650  0$aGoats$bCompetitive Pet Keeping
+> >=650  0$aCats$bCompetitive Pet Keeping
+> >~~~
+> >{: .output}
 > {: .solution}
 {: .challenge}
 
