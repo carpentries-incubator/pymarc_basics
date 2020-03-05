@@ -506,6 +506,7 @@ Its that straight forward! We've made a new empty record. All it contains is a m
 > >
 > >print (my_new_record)
 > >~~~
+> >{: .language-python}
 > {: .solution}
 {: .challenge}
 
