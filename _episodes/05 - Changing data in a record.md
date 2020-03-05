@@ -239,7 +239,7 @@ We're starting with these 035 fields:
 =035  \\$a(NLNZils)6278-ilsdb
 =035  \\$a(OCoLC)957343
 ~~~
-{:. output} 
+{: .output} 
 
 ```Python
     for record in reader:
@@ -264,7 +264,7 @@ ____
 7
 6
 ~~~
-{. output}
+{: .output}
 
 We end up with these:
 
@@ -276,7 +276,7 @@ We end up with these:
 =035  \\$a(NLNZils)6278
 =035  \\$a(OCoLC)957343
 ~~~
-{:. output}  
+{: .output}  
 
 This is only one approach of many to tackling this task. For any given task the solution might require checking field indicators, other fields, text in subfields etc. 
 
@@ -300,7 +300,7 @@ with open(my_marc_file, 'rb') as data:
 =100  1\$aManning, Arthur,$d1918-
 =100  1\$aManning, Arthur,
 ~~~
-{. output}
+{: .output}
 
 # Adding information to a record
 
