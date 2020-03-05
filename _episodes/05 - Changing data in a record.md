@@ -19,7 +19,7 @@ Start a new file in your IDE <code>episode_5.py</code>
 
 Set up the basic record reader like we have previously, this time we're only going to process one record: 
 
-```python
+```Python
 from pymarc import MARCReader
 my_marc_file = "NLNZ_example_marc.marc"
 
@@ -33,7 +33,7 @@ Let set up a parser that will allows us to manipulate a single record. We alread
 
 As we know we will be changing a record in some way we'll probably want to copy the record to a new object, and make our changes on that. Python has a particular trait around copying objects that we need to be aware of. If we use the basis assignation via an equals sign - <code>a = b</code> behind the scenes python essentially make a new pointer to original object. This means that <code>a</code> is not a copy of <code>b</code>, it IS <code>b</code>! Any changes to <code>b</code> are also in <code>a</code>. We can check this by asking python to tell us the internal identifier it uses to track the various objects: 
 
-```python
+```Python
 a = ["Hello"]
 # assigning b to be a
 b = a
@@ -66,7 +66,7 @@ Your id number will be different to the one shown here, they are assigned by pyt
 
 To make sure we make a new record that we can change without making changes to the original record we can use the python <code>deepcopy()</code> method to solve the problem: 
 
-```python
+```Python
 from pymarc import MARCReader
 from copy import deepcopy
 
@@ -86,10 +86,10 @@ with open(my_marc_file, 'rb') as data:
 
 Lets look at how we can change an existing piece of information in a record. Currently in our record we can see we have an author noted as Arthur Manning. 
 
-As an exercise, lets say that Arthur informed us that he isn't in fact the author, his twin sister] - Arthuretta is. We need to change this record to make sure its accurate! 
+As an exercise, lets say that Arthur informed us that he isn't in fact the author, his twin sister - Arthuretta is. We need to change this record to make sure its accurate! 
 
 
-```python
+```Python
     for record in reader:
         my_record = deepcopy(record)
 
