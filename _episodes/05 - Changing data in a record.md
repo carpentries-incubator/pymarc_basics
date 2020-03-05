@@ -474,9 +474,9 @@ print (my_new_record)
 ~~~
 {: .output}
 
-Its that straight forward! We've made a new empty record. All it contains is a minimum LEADER data required by a MARC record.
+We've made a new empty record. All it contains is the minimum LEADER data required by a MARC record.
 
- > ## Try for yourself
+> ## Try for yourself
 >
 > Make a record that contains the following information
 >
