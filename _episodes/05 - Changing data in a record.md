@@ -169,7 +169,7 @@ We have a few strategies to help with this problem.
 
 Lets look at what #3 looks like in script. 
 
-```python
+```Python
 with open(my_marc_file, 'rb') as data:
     reader = MARCReader(data)
     for record in reader:
