@@ -480,10 +480,13 @@ Its that straight forward! We've made a new empty record. All it contains is a m
 >
 > Make a record that contains the following information
 >
-> 001: a, 
->
->
->
+>| Tag  | Ind_1 | Ind_2 | Subfields and data                                            |
+>|------|-------|-------|---------------------------------------------------------------|
+>| 003  |       |       | Nz                                                            |
+>| 100  |   1   |   \   | (a) Gattuso, Jay (d) d1978-                                   |
+>| 245  |   1   |   0   | (a) Goats. Are they the best animals? (b) What about Cats!?   |
+>| 650  |   \   |   0   | (a) Goats (b) Competitive Pet Keeping                         |
+>| 650  |   \   |   0   | (a) Cats  (b) Competitive Pet Keeping                         |   
 >
 >
 >
