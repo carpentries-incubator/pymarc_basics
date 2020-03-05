@@ -169,6 +169,10 @@ with open(my_marc_file, 'rb') as data:
     for record in reader:
         my_record = deepcopy(record)
         ### making the new 245 field
+
+        print (record)
+
+        quit()
         my_new_245_field = Field(
 
                             tag = '245', 

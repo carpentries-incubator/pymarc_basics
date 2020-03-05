@@ -224,8 +224,22 @@ Number of 035 fields in my_record: 7
 {: .output}
 
 
-Lets look at how we might choose the field we want to delete when there are more than one. Lets delete the 035 field that contains the text "ilsdb":
+Lets look at how we might choose the field we want to delete when there are more than one. Lets delete the 035 field that contains the text "ilsdb". 
 
+We can do that by testing for the presence of that string in our 035 fields. 
+
+We're starting with these 035 fields: 
+
+~~~
+=035  \\$z4260
+=035  \\$a(nzNZBN)687856
+=035  \\$9   67095940
+=035  \\$a(Nz)3760235
+=035  \\$a(NLNZils)6278
+=035  \\$a(NLNZils)6278-ilsdb
+=035  \\$a(OCoLC)957343
+~~~
+{:. output} 
 
 ```Python
     for record in reader:
@@ -251,6 +265,18 @@ ____
 6
 ~~~
 {. output}
+
+We end up with these:
+
+~~~
+=035  \\$z4260
+=035  \\$a(nzNZBN)687856
+=035  \\$9   67095940
+=035  \\$a(Nz)3760235
+=035  \\$a(NLNZils)6278
+=035  \\$a(OCoLC)957343
+~~~
+{:. output}  
 
 This is only one approach of many to tackling this task. For any given task the solution might require checking field indicators, other fields, text in subfields etc. 
 
