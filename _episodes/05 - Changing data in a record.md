@@ -496,10 +496,10 @@ We've made a new empty record. All it contains is the minimum LEADER data requir
 > >my_new_record = Record()
 > >my_new_fields = []
 > >my_new_fields.append(Field('003', data='Nz'))
-> >my_new_fields.append(Field(tag='100', indicators=['1',''], subfields=['a','Gattuso, Jay,', 'd', 'd1978-']))
+> >my_new_fields.append(Field(tag='100', indicators=['1',' '], subfields=['a','Gattuso, Jay,', 'd', 'd1978-']))
 > >my_new_fields.append(Field(tag='245', indicators=['1','0'], subfields=['a','Goats. Are they the best animals? :', 'b', 'What about Cats!? /' ]))
-> >my_new_fields.append(Field(tag='650', indicators=['','0'], subfields=['a','Goats', 'b', 'Competitive Pet Keeping']))
-> >my_new_fields.append(Field(tag='650', indicators=['','0'], subfields=['a','Cats', 'b', 'Competitive Pet Keeping']))
+> >my_new_fields.append(Field(tag='650', indicators=[' ','0'], subfields=['a','Goats', 'b', 'Competitive Pet Keeping']))
+> >my_new_fields.append(Field(tag='650', indicators=[' ','0'], subfields=['a','Cats', 'b', 'Competitive Pet Keeping']))
 > >
 > >for my_new_field in my_new_fields:
 > >    my_new_record.add_ordered_field(my_new_field)
@@ -511,10 +511,10 @@ We've made a new empty record. All it contains is the minimum LEADER data requir
 > >~~~
 > >=LDR            22        4500
 > >=003  Nz
-> >=100  1$aGattuso, Jay,$dd1978-
+> >=100  1\$aGattuso, Jay,$dd1978-
 > >=245  10$aGoats. Are they the best animals? :$bWhat about Cats!? /
-> >=650  0$aGoats$bCompetitive Pet Keeping
-> >=650  0$aCats$bCompetitive Pet Keeping
+> >=650  \0$aGoats$bCompetitive Pet Keeping
+> >=650  \0$aCats$bCompetitive Pet Keeping
 > >~~~
 > >{: .output}
 > {: .solution}
