@@ -242,7 +242,7 @@ We're starting with these 035 fields - we can see that only one field has "ilsdb
 {: .output} 
 
 ```Python
-    for record in reader:
+for record in reader:
     my_record = deepcopy(record)
 
     print (record)
@@ -423,7 +423,7 @@ print (my_record)
 ~~~
 {: .output}
 
-Notice where the new field is. The <code>add_field()</code> method has addeed it to the end of the record! 
+Notice where the new field is. The <code>add_field()</code> method has added it to the end of the record.  
 
 > ## Order of fields in a MARC record
 >
@@ -455,7 +455,7 @@ for record in reader:
     my_record.add_ordered_field(my_new_245_field)
 ```
 
-PyMARC doesn't do much (anything...) by the way of data validation, so it won't prevent you from making a MARC item that isn't compliant with the MARC standards. 
+While we're thinking about validation / what we expect our records to look like, its worth knowing that PyMARC doesn't do much (anything...) by the way of data validation. t won't prevent you from making a MARC item that isn't compliant with the MARC standards. 
 
 # Making a new record
 
