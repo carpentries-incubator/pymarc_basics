@@ -212,7 +212,7 @@ print (my_new_record)
 
 
 print ()
-print ("_______ making a new record populated_______")
+print ("_______ making a new record - populated _______")
 print ()
 
 from pymarc import Record
