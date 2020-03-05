@@ -224,7 +224,8 @@ Number of 035 fields in my_record: 7
 {: .output}
 
 
-Lets look at how we might choose the field we want to delete when there are more than one. Lets delete the 035 field that contains the text "ilsdb" <code>=035  \\$a(NLNZils)6278-ilsdb</code>:
+Lets look at how we might choose the field we want to delete when there are more than one. Lets delete the 035 field that contains the text "ilsdb":
+
 
 ```Python
     for record in reader:
