@@ -491,6 +491,7 @@ Its that straight forward! We've made a new empty record. All it contains is a m
 >
 >
 > > ## Solution
+> >~~~
 > >from pymarc import Record
 > >my_new_record = Record()
 > >my_new_fields = []
@@ -504,6 +505,7 @@ Its that straight forward! We've made a new empty record. All it contains is a m
 > >    my_new_record.add_ordered_field(my_new_field)
 > >
 > >print (my_new_record)
+> >~~~
 > {: .solution}
 {: .challenge}
 

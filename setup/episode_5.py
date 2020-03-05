@@ -215,14 +215,10 @@ print ()
 print ("_______ making a new record populated_______")
 print ()
 
-field_template = Field(tag='', indicators=['',''], subfields=['',''])
-
 from pymarc import Record
 
 my_new_record = Record()
-
 my_new_fields = []
-
 my_new_fields.append(Field('003', data='Nz'))
 my_new_fields.append(Field(tag='100', indicators=['1',''], subfields=['a','Gattuso, Jay,', 'd', 'd1978-']))
 my_new_fields.append(Field(tag='245', indicators=['1','0'], subfields=['a','Goats. Are they the best animals? :', 'b', 'What about Cats!? /' ]))
