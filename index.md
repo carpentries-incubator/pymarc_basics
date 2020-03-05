@@ -8,12 +8,14 @@ In this lesson you'll learn how to engage with MARC binary files with Python. Th
 
 > ## Prerequisites
 >
-> This lesson is designed to be an applied introduction to Python, MARC and PyMARC.
+> This lesson is an applied introduction to Python, MARC and PyMARC.
 >
 > It is suitable for someone who knows some Python but no MARC
+>
 > It is suitable for someone who knows some MARC but no Python
-> It is suitable for someone who does not know any MARC or any Python
-> 		(recommended learner completes Python for librarians or similar first.)
+>
+> It is suitable for someone who does not know any MARC or any Python (we recommend you complete Python for librarians or similar first.)
+
 
 {: .prereq}
 
