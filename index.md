@@ -4,6 +4,8 @@ root: .  # Is the only page that doesn't follow the pattern /:path/index.html
 permalink: index.html  # Is the only page that doesn't follow the pattern /:path/index.html
 ---
 
+This lesson is an applied introduction to Python, MARC and PyMARC.
+
 In this lesson you'll learn how to engage with MARC binary files with Python. This includes read, editing, creating, and saving MARC records.  
 
 Anyone working on bibliographic records will have used any number of record editing tools to create/change/delete records. These are typically part of a libraries record management platform. 
@@ -18,13 +20,12 @@ Imagine having the ability at your finger tips to work through hundreds of thous
 
 > ## Prerequisites
 >
-> This lesson is an applied introduction to Python, MARC and PyMARC.
->
-> It is suitable for someone who knows basic Python
->
-> It is suitable for someone who does not know about MARC
->
 > It is strongly recommended you complete [Python for Librarians](https://librarycarpentry.org/library-python/) or similar before starting this lesson
+>
+> It is suitable for anyone who knows some basic Python
+>
+> It is suitable for anyone who does not know anything about MARC records. 
+
 
 
 {: .prereq}
