@@ -1,5 +1,5 @@
 ---
-title: Parsing with PyMARC - PArt Two
+title: Parsing with PyMARC - Part Two
 teaching: 30
 exercises: 30
 objectives:

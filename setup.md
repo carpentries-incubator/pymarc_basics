@@ -36,13 +36,19 @@ ________
 
 The following files are the python helper scripts for the episodes in this lesson. 
 
-Download them if you want to see some reference/ example python scripts. 
+Its *not* recommended that you use these in the lesson. Good practice in carpentries pedagogy is to have us code as we go. 
+
+[Discussion Summary: Delivering Exercises to Learners](https://carpentries.org/blog/2018/11/delivering-exercise)
+
+These scripts are included as a reference and as a takeaway for after the lesson. 
 
 1.  [episode_1.py](/setup/episode_1.py)
 2.	[episode_2.py](/setup/episode_2.py)
 3.	[episode_3.py](/setup/episode_3.py)
-4.	[episode_4.py](/setup/episode_4.py)
+4. 	Break
 5.	[episode_5.py](/setup/episode_5.py)
+4.	[episode_6.py](/setup/episode_6.py)
+5.	[episode_7.py](/setup/episode_7.py
 
 
 
