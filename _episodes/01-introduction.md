@@ -56,7 +56,7 @@ To test it worked, open your IDE (SublimeText) and make a new python file (e.g. 
 ```python
 import pymarc
 
-print ("{}".format("Hello World!") 
+print ("{}".format("Hello World!")) 
 ```
 
 Run the script, and if there is no error messages in the python terminal window and you see the text <code>Hello World!</code>, you've successfully installed pymarc! 
